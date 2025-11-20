@@ -1,788 +1,89 @@
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepStudy.AI | A plataforma definitiva para sua aprovação</title>
-    <meta name="description" content="Use Inteligência Artificial para criar um plano estratégico, analisar seus pontos fracos e focar no que realmente cai na prova.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class', // Changed from 'media' to 'class' to support manual toggling or forcing dark mode
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            200: '#a7f3d0',
-                            300: '#6ee7b7',
-                            400: '#34d399',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b',
-                            950: '#022c22',
-                        },
-                        accent: {
-                             50: '#f0f9ff',
-                             500: '#0ea5e9', // Sky blue for trust
-                        }
-                    },
-                    animation: {
-                        'scroll': 'scroll 40s linear infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'blob': 'blob 7s infinite',
-                    },
-                    keyframes: {
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        }
+document.addEventListener('DOMContentLoaded', () => {
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // JS-based smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            // Ensure it's a valid hash and not just "#"
+            if (href && href.startsWith('#') && href.length > 1) {
+                e.preventDefault();
+                const targetElement = document.querySelector<HTMLElement>(href);
+                if (targetElement) {
+                    // Respect the scroll-padding-top from CSS for correct offset
+                    const scrollPaddingTop = parseInt(getComputedStyle(document.documentElement).scrollPaddingTop, 10) || 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - scrollPaddingTop;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if it's open and a link inside it was clicked
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden') && this.closest('#mobile-menu')) {
+                        mobileMenu.classList.add('hidden');
                     }
                 }
             }
-        }
-    </script>
-    <style>
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 100px; /* Compensate for fixed header height on anchor clicks */
-      }
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-      }
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-      }
-      /* Modern Header Glass Effect - Transparent Background */
-      .header-glass {
-          background-color: rgba(255, 255, 255, 0); /* Fully transparent */
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-      }
-      .dark .header-glass {
-          background-color: rgba(2, 6, 23, 0); /* Fully transparent in dark mode */
-      }
-    </style>
-    <!-- Import script module -->
-    <script type="module" src="./index.js"></script>
-</head>
-<body class="bg-slate-50 dark:bg-[#020617] text-slate-700 dark:text-slate-300 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300">
+        });
+    });
 
-    <!-- Header -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50 header-glass border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 shadow-sm">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo (1. DeepStudy.AI) -->
-                <div class="flex-shrink-0 cursor-pointer transition-transform hover:scale-105">
-                    <a href="#hero" class="flex items-center gap-2 nav-link group" data-nav-id="hero">
-                        <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-600/20">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <span class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">DeepStudy<span class="text-brand-600 dark:text-brand-400">.AI</span></span>
-                    </a>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <nav id="desktop-nav" class="hidden md:flex md:items-center md:gap-8">
-                    <!-- 2. Home -->
-                    <a href="#hero" data-nav-id="hero" class="nav-link text-sm font-bold text-slate-950 dark:text-slate-100 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
-                    <!-- 3. Recursos -->
-                    <a href="#features" data-nav-id="features" class="nav-link text-sm font-bold text-slate-950 dark:text-slate-100 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Recursos</a>
-                    <!-- 4. Depoimentos -->
-                    <a href="#testimonials" data-nav-id="testimonials" class="nav-link text-sm font-bold text-slate-950 dark:text-slate-100 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Depoimentos</a>
-                    <!-- 5. Planos -->
-                    <a href="#pricing" data-nav-id="pricing" class="nav-link text-sm font-bold text-slate-950 dark:text-slate-100 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Planos</a>
-                </nav>
-
-                <!-- Action Buttons -->
-                <div class="hidden md:flex items-center gap-4">
-                    <!-- 6. Login -->
-                    <a href="#pricing" class="px-6 py-2.5 text-sm font-bold rounded-xl text-brand-700 bg-white/90 backdrop-blur-sm border border-brand-200 hover:bg-brand-50 hover:border-brand-500 hover:text-brand-800 transition-all shadow-sm dark:bg-slate-900/80 dark:text-brand-400 dark:border-brand-900/50 dark:hover:text-brand-300">
-                        Login
-                    </a>
-                    <!-- 7. Começar Agora -->
-                    <a href="#pricing" class="px-6 py-2.5 text-sm font-bold rounded-xl text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transition-all transform hover:-translate-y-0.5">
-                        Começar Agora
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-xl text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Abrir menu">
-                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-[#020617] border-b border-slate-200 dark:border-slate-800 shadow-xl">
-            <div class="px-4 pt-4 pb-6 space-y-2">
-                <a href="#hero" data-nav-id="hero" class="nav-link block px-4 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600">Home</a>
-                <a href="#features" data-nav-id="features" class="nav-link block px-4 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600">Recursos</a>
-                <a href="#testimonials" data-nav-id="testimonials" class="nav-link block px-4 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600">Depoimentos</a>
-                <a href="#pricing" data-nav-id="pricing" class="nav-link block px-4 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600">Planos</a>
-                
-                <div class="grid grid-cols-2 gap-4 pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
-                     <a href="#pricing" class="text-center px-4 py-3 text-sm font-bold rounded-xl text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-900 hover:bg-brand-50 dark:hover:bg-slate-800 transition-all">Login</a>
-                    <a href="#pricing" class="text-center px-4 py-3 text-sm font-bold rounded-xl text-white bg-brand-600 hover:bg-brand-500 shadow-md transition-all">Começar</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main id="app-content" class="min-h-screen overflow-hidden">
-        
-        <!-- Hero Section -->
-        <section id="hero" class="pt-28 sm:pt-36 pb-16 lg:pb-24 relative overflow-hidden">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center relative z-10">
-                 <!-- Black Friday Badge Centered at Top -->
-                <div class="flex justify-center mb-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 shadow-sm hover:shadow-md transition-shadow cursor-default backdrop-blur-sm">
-                        <span class="relative flex h-2.5 w-2.5 flex-shrink-0">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600 dark:bg-red-500"></span>
-                        </span>
-                        <span class="text-xs font-bold text-red-600 dark:text-red-400 tracking-wide uppercase">Black Friday: promoção válida apenas para as próximas 1000 assinaturas</span>
-                    </div>
-                </div>
-
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-3 drop-shadow-sm">
-                    Seja <span class="text-brand-600">aprovado</span> ainda esse ano em um Concurso
-                </h1>
-                
-                <p class="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed mb-8 font-medium">
-                    Com Plano de estudos estratégico 100% focado na sua rotina, otimização de tempo e análise do algoritmo da sua banca feita por IA.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#pricing" class="inline-flex justify-center items-center px-8 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-xl shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">
-                        Começar Agora
-                    </a>
-                    <a href="#how-it-works" class="inline-flex justify-center items-center px-8 py-4 text-lg font-bold rounded-2xl text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow-md">
-                        Ver como funciona
-                    </a>
-                </div>
-                <div class="mt-8 flex items-center justify-center gap-6 text-sm font-semibold text-slate-500 dark:text-slate-400">
-                    <span class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        7 dias grátis
-                    </span>
-                    <span class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Cancela quando quiser
-                    </span>
-                </div>
-            </div>
-
-             <!-- Social Proof Marquee -->
-             <div class="relative pt-16">
-                <p class="text-center text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-10">Nossos alunos aprovaram em</p>
-                <div class="relative w-full overflow-hidden group">
-                     <!-- Gradient masks -->
-                     <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-50 dark:from-[#020617] to-transparent z-10 pointer-events-none"></div>
-                     <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-50 dark:from-[#020617] to-transparent z-10 pointer-events-none"></div>
-                     
-                     <!-- Scrolling Container -->
-                     <div class="flex animate-scroll gap-16 items-center w-max opacity-50 hover:opacity-80 transition-opacity duration-500 grayscale hover:grayscale-0">
-                         <!-- Set 1 -->
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">RECEITA FEDERAL</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">POLÍCIA FEDERAL</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">BANCO CENTRAL</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">TJ-SP</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">MPU</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">INSS</span>
-                         
-                         <!-- Set 2 -->
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">RECEITA FEDERAL</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">POLÍCIA FEDERAL</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">BANCO CENTRAL</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">TJ-SP</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">MPU</span>
-                         <span class="text-2xl font-black text-slate-800 dark:text-slate-200">INSS</span>
-                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Social Proof Section -->
-        <section class="py-16 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800/50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Card 1 -->
-                    <div class="flex gap-5 items-start p-6 rounded-3xl bg-slate-50 dark:bg-[#0B1120] hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-slate-200/50">
-                         <div class="relative flex-shrink-0">
-                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/women/63.jpg" alt="Carla Dias">
-                             <div class="absolute -bottom-2 -right-2 bg-brand-500 rounded-full p-1 border-2 border-white dark:border-slate-900">
-                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                             </div>
-                         </div>
-                         <div>
-                             <div class="flex items-center gap-2 mb-1">
-                                 <p class="text-base font-bold text-slate-900 dark:text-white">Carla Dias</p>
-                                 <span class="text-[10px] font-bold bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300 px-2 py-0.5 rounded-full uppercase tracking-wide">Aprovada</span>
-                             </div>
-                             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide mb-2">Tribunal de Justiça - SP</p>
-                             <p class="text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed">"O plano de estudos da IA é surreal. Economizei horas de planejamento."</p>
-                         </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="flex gap-5 items-start p-6 rounded-3xl bg-slate-50 dark:bg-[#0B1120] hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-slate-200/50">
-                         <div class="relative flex-shrink-0">
-                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/men/85.jpg" alt="Bruno Silva">
-                              <div class="absolute -bottom-2 -right-2 bg-brand-500 rounded-full p-1 border-2 border-white dark:border-slate-900">
-                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                             </div>
-                         </div>
-                         <div>
-                             <div class="flex items-center gap-2 mb-1">
-                                 <p class="text-base font-bold text-slate-900 dark:text-white">Bruno Silva</p>
-                                  <span class="text-[10px] font-bold bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300 px-2 py-0.5 rounded-full uppercase tracking-wide">Aprovado</span>
-                             </div>
-                             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide mb-2">Receita Federal</p>
-                             <p class="text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed">"Fui direto ao ponto. Estudei só o que caía. Aprovado em 6 meses."</p>
-                         </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="flex gap-5 items-start p-6 rounded-3xl bg-slate-50 dark:bg-[#0B1120] hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-slate-200/50">
-                         <div class="relative flex-shrink-0">
-                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/women/21.jpg" alt="Leticia Costa">
-                              <div class="absolute -bottom-2 -right-2 bg-brand-500 rounded-full p-1 border-2 border-white dark:border-slate-900">
-                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                             </div>
-                         </div>
-                         <div>
-                             <div class="flex items-center gap-2 mb-1">
-                                 <p class="text-base font-bold text-slate-900 dark:text-white">Leticia Costa</p>
-                                  <span class="text-[10px] font-bold bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300 px-2 py-0.5 rounded-full uppercase tracking-wide">Aprovado</span>
-                             </div>
-                             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide mb-2">INSS</p>
-                             <p class="text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed">"A plataforma se pagou no primeiro salário. Recomendo demais!"</p>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- How it Works Section -->
-        <section id="how-it-works" class="py-24 bg-white dark:bg-[#0B1120] relative">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-                <div class="text-center mb-20">
-                    <span class="text-brand-600 dark:text-brand-400 font-bold tracking-wider uppercase text-sm">Metodologia</span>
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mt-3">Sua aprovação em 7 passos.</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Deixe a burocracia com a gente e foque apenas em estudar.</p>
-                </div>
-                
-                <div class="flex flex-wrap justify-center gap-8 text-center relative">
-                     <!-- Step 1 -->
-                    <div class="relative z-10 group w-full sm:w-64">
-                        <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">1</span>
-                        </div>
-                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Envie seu Edital</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Upload do PDF. A IA analisa todo o conteúdo programático.</p>
-                    </div>
-                     <!-- Step 2 -->
-                    <div class="relative z-10 group w-full sm:w-64">
-                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">2</span>
-                        </div>
-                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Receba seu Plano + Cronograma</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Cronograma diário com metas, matérias e revisões.</p>
-                    </div>
-                     <!-- Step 3 -->
-                    <div class="relative z-10 group w-full sm:w-64">
-                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">3</span>
-                        </div>
-                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Tutor Gemini</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Tire dúvidas com IA treinada para concursos públicos.</p>
-                    </div>
-                     <!-- Step 4 -->
-                    <div class="relative z-10 group w-full sm:w-64">
-                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">4</span>
-                        </div>
-                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Pratique Questões</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Questões de provas anteriores selecionadas pelo suporte.</p>
-                    </div>
-                    <!-- Step 5 -->
-                    <div class="relative z-10 group w-full sm:w-64">
-                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">5</span>
-                        </div>
-                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Flashcards SRS</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Além de ter uma IA que gera seus flashcards, ela funciona com um o mesmo sistema de revisoes do algoritmo usado no app Ankidroid, com revisão espaçada programada automaticamente dentro do app.</p>
-                    </div>
-                    <!-- Step 6 -->
-                    <div class="relative z-10 group w-full sm:w-64">
-                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">6</span>
-                        </div>
-                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Métricas</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Descubra seus pontos fortes e fracos com análise de dados.</p>
-                    </div>
-                    <!-- Step 7 -->
-                    <div class="relative z-10 group w-full sm:w-64">
-                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">7</span>
-                        </div>
-                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Reforço IA 24/7</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Tire Dúvidas 24h por 7 dias da semana sobre qualquer tema do direito ou tópico do seu edital de forma personalizada.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="py-24 bg-slate-50 dark:bg-[#020617]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Arsenal de aprovação.</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Ferramentas desenhadas para máxima eficiência cognitiva.</p>
-                </div>
-
-                <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-                    <!-- Card 1 -->
-                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
-                        <div class="w-14 h-14 mb-6 rounded-2xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center text-brand-600 dark:text-brand-400">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Plano IA Adaptativo</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Cronograma que se ajusta automaticamente se você falhar um dia ou tiver imprevistos.</p>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
-                        <div class="w-14 h-14 mb-6 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Análise do Edital</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">A IA analisa as provas recentes do seu concurso e cruza os dados com o edital, com isso ela gera um raio-x dos temas e assuntos prioritários com base no que realmente caiu.</p>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
-                        <div class="w-14 h-14 mb-6 rounded-2xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Métricas de Evolução</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Dashboards detalhados para você ver sua nota subindo simulado após simulado.</p>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
-                        <div class="w-14 h-14 mb-6 rounded-2xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Flashcards SRS</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Sistema de repetição espaçada para garantir que você jamais esqueça o que estudou.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Anchor (Value Stacking) Section -->
-        <section class="py-24 bg-[#0B1120] dark:bg-[#020617] relative overflow-hidden">
-            <!-- Background texture -->
-             <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">Quanto custaria <span class="text-brand-400">contratar isso separadamente?</span></h2>
-                </div>
-
-                <div class="bg-slate-900/50 backdrop-blur-md rounded-[2rem] border border-slate-800 overflow-hidden">
-                    <div class="p-8 md:p-12 space-y-6">
-                        <!-- Item 1 -->
-                        <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-brand-900/30 p-3 rounded-xl">
-                                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-                                <span class="font-semibold text-lg text-white">Mentoria & Cronograma</span>
-                            </div>
-                            <span class="font-bold text-slate-400 text-lg">R$ 497,00</span>
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-brand-900/30 p-3 rounded-xl">
-                                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                                </div>
-                                <span class="font-semibold text-lg text-white">Raio-X da Banca</span>
-                            </div>
-                            <span class="font-bold text-slate-400 text-lg">R$ 197,00</span>
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-brand-900/30 p-3 rounded-xl">
-                                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                </div>
-                                <span class="font-semibold text-lg text-white">Banco de Questões</span>
-                            </div>
-                            <span class="font-bold text-slate-400 text-lg">R$ 49,90</span>
-                        </div>
-                        <!-- Item 4 -->
-                         <div class="flex justify-between items-center">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-brand-900/30 p-3 rounded-xl">
-                                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                                </div>
-                                <span class="font-semibold text-lg text-white">Flashcards App</span>
-                            </div>
-                            <span class="font-bold text-slate-400 text-lg">R$ 29,90</span>
-                        </div>
-                    </div>
-                    <div class="bg-[#020617] p-8 flex justify-between items-center border-t border-slate-800">
-                        <span class="text-xl md:text-2xl font-bold text-white">Total Mensal:</span>
-                        <span class="text-3xl md:text-4xl font-black text-red-500 line-through decoration-4 decoration-red-500/50">R$ 773,80</span>
-                    </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <p class="text-2xl font-medium text-slate-300">
-                        Hoje, você <span class="text-brand-400 font-bold underline decoration-wavy decoration-brand-500/50">não paga nem 5%</span> disso.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Section -->
-        <section id="pricing" class="py-24 bg-white dark:bg-[#020617]">
-             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <div class="text-center">
-                    <!-- Scarcity Badge -->
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 shadow-sm mb-6 hover:shadow-md transition-shadow cursor-default backdrop-blur-sm">
-                        <span class="relative flex h-2.5 w-2.5 flex-shrink-0">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600 dark:bg-red-500"></span>
-                        </span>
-                        <span class="text-xs font-bold text-red-600 dark:text-red-400 tracking-wide uppercase">Black Friday: promoção válida apenas para as próximas 1000 assinaturas</span>
-                    </div>
-                    <div>
-                        <span class="text-brand-600 dark:text-brand-400 font-bold tracking-wider uppercase text-sm">Investimento</span>
-                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mt-3">Escolha seu plano.</h2>
-                        <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Sem multas. Sem fidelidade. Cancele quando quiser.</p>
-                    </div>
-                </div>
-
-                <div class="mt-20 grid gap-8 md:gap-10 grid-cols-1 md:grid-cols-3 items-start">
-                    <!-- Mensal -->
-                    <div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 flex flex-col shadow-xl shadow-slate-200/40 dark:shadow-none hover:border-brand-200 transition-all h-full">
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mensal</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 font-medium">Acesso completo, pague mês a mês.</p>
-                        <div class="mt-8">
-                            <p class="text-red-500 font-semibold text-sm">de <span class="line-through">R$39,90</span> por</p>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">R$ 34,90</span>
-                                <span class="text-slate-500 dark:text-slate-400 font-semibold">/mês</span>
-                            </div>
-                        </div>
-                        <ul class="mt-8 space-y-4 text-sm font-medium text-slate-600 dark:text-slate-300 flex-grow">
-                           <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>5 Planos + Cronograma de Estudo IA / Mês</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>5 Raio-x do Edital e das provas anteriores</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Tutor Gemini Pro Ilimitado</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Métricas de Desempenho</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Banco de Questões</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>100 pedidos de provas anteriores</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Flash Cards com IA</span>
-                            </li>
-                        </ul>
-                        <a href="https://pay.cakto.com.br/3epkcd2_658166" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
-                    </div>
+    // FAQ Accordion
+    const initFaqAccordion = () => {
+        const accordion = document.querySelector('.faq-accordion');
+        if(accordion){
+            const faqToggles = accordion.querySelectorAll('.faq-toggle');
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const answer = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('.faq-icon');
                     
-                    <!-- Trimestral (Most Popular) -->
-                    <div class="relative bg-brand-600 dark:bg-brand-700 border border-brand-500 rounded-[2rem] p-8 flex flex-col shadow-2xl shadow-brand-600/40 h-full">
-                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-slate-900 dark:bg-slate-950 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border-2 border-brand-500">Mais Popular</span>
-                        <h3 class="text-xl font-bold text-white">Trimestral</h3>
-                        <p class="mt-2 text-sm text-brand-200 font-medium">Economize 2 meses e acelere seus estudos.</p>
-                        <div class="mt-8">
-                            <p class="text-red-300 font-semibold text-sm">de <span class="line-through">R$ 27,90</span> por</p>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-4xl font-bold tracking-tight text-white">R$ 19,90</span>
-                                <span class="text-brand-200 font-semibold">/mês</span>
-                            </div>
-                            <p class="text-xs text-brand-200 mt-1">ou à vista por apenas R$ 51,00</p>
-                        </div>
-                        <ul class="mt-8 space-y-4 text-sm font-medium text-brand-100 dark:text-brand-200 flex-grow">
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>10 Planos + Cronograma de Estudo IA / Mês</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>10 Raio-x do Edital e das provas anteriores</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Tutor Gemini Pro Ilimitado</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Métricas de Desempenho</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Banco de Questões</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>1000 pedidos de provas anteriores</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Flash Cards com IA</span>
-                            </li>
-                        </ul>
-                        <a href="https://pay.cakto.com.br/3epkcd2_658166" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand-700 bg-white hover:bg-brand-50 transition-all shadow-lg transform hover:-translate-y-1">Quero ser Aprovado</a>
-                    </div>
+                    answer?.classList.toggle('hidden');
+                    icon?.classList.toggle('rotate-180');
+                });
+            });
+        }
+    };
+    initFaqAccordion();
 
-                    <!-- Anual -->
-                    <div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 flex flex-col shadow-xl shadow-slate-200/40 dark:shadow-none hover:border-brand-200 transition-all h-full">
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Anual</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 font-medium">Melhor custo-benefício para aprovação.</p>
-                        <div class="mt-8">
-                            <p class="text-red-500 font-semibold text-sm">de <span class="line-through">R$ 16,90</span> por</p>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">R$ 11,90</span>
-                                <span class="text-slate-500 dark:text-slate-400 font-semibold">/mês</span>
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">ou à vista por apenas R$ 97,00</p>
-                        </div>
-                        <ul class="mt-8 space-y-4 text-sm font-medium text-slate-600 dark:text-slate-300 flex-grow">
-                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Planos + Cronograma de Estudo IA - <strong>Ilimitado</strong></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Raio-x do Edital e das provas anteriores - <strong>Ilimitado</strong></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Tutor Gemini Pro Ilimitado</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Métricas de Desempenho</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Banco de Questões</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Pedidos de provas anteriores - <strong>Ilimitados</strong></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Flash Cards com IA - <strong>Ilimitado</strong></span>
-                            </li>
-                        </ul>
-                        <a href="https://pay.cakto.com.br/cdf3frg_656564" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('header a.nav-link');
+    const header = document.getElementById('header');
+    const headerHeight = header?.offsetHeight ?? 64;
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="py-24 bg-slate-50 dark:bg-[#020617]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Amado por concurseiros de todo o Brasil.</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Veja o que nossos alunos estão dizendo sobre a revolução nos estudos.</p>
-                </div>
+    const onScroll = () => {
+        const scrollPosition = window.scrollY + headerHeight + 50;
+        let activeSectionId = '';
 
-                <div class="relative">
-                    <div class="flex gap-8 overflow-x-auto scrollbar-hide pb-8 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                        <!-- Testimonial 1 -->
-                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
-                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"A análise do edital por IA me mostrou o que priorizar. Foi um divisor de águas. Consegui focar 80% do meu tempo nos 20% de conteúdo que mais caem. Resultado: aprovação em tempo recorde!"</p>
-                            <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Roberto Mendes">
-                                <div>
-                                    <p class="font-bold text-slate-800 dark:text-slate-100">Roberto Mendes</p>
-                                    <p class="text-sm text-slate-500">Aprovado - Polícia Federal</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Testimonial 2 -->
-                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
-                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
-                            <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana Almeida">
-                                <div>
-                                    <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
-                                    <p class="text-sm text-slate-500">Aprovada - MPU</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Testimonial 3 -->
-                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
-                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"O Tutor Gemini é como ter um professor particular 24 horas por dia. Qualquer dúvida, em qualquer matéria, era respondida na hora, de forma clara. Essencial na reta final."</p>
-                            <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/5.jpg" alt="Fernando Oliveira">
-                                <div>
-                                    <p class="font-bold text-slate-800 dark:text-slate-100">Fernando Oliveira</p>
-                                    <p class="text-sm text-slate-500">Aprovado - Banco Central</p>
-                                </div>
-                            </div>
-                        </div>
-                         <!-- Testimonial 4 (Duplicate) -->
-                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
-                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"A análise do edital por IA me mostrou o que priorizar. Foi um divisor de águas. Consegui focar 80% do meu tempo nos 20% de conteúdo que mais caem. Resultado: aprovação em tempo recorde!"</p>
-                            <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Roberto Mendes">
-                                <div>
-                                    <p class="font-bold text-slate-800 dark:text-slate-100">Roberto Mendes</p>
-                                    <p class="text-sm text-slate-500">Aprovado - Polícia Federal</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Testimonial 5 (Duplicate) -->
-                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
-                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
-                            <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana Almeida">
-                                <div>
-                                    <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
-                                    <p class="text-sm text-slate-500">Aprovada - MPU</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Scroll arrow indicator -->
-                    <div class="absolute top-1/2 right-0 -translate-y-1/2 hidden md:flex items-center justify-center w-24 h-full bg-gradient-to-l from-slate-50 dark:from-[#020617] to-transparent pointer-events-none z-10 opacity-75">
-                        <svg class="w-8 h-8 text-slate-500 animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </section>
+        sections.forEach(section => {
+            const sectionEl = section as HTMLElement;
+            if (scrollPosition >= sectionEl.offsetTop) {
+                activeSectionId = section.id;
+            }
+        });
 
-        <!-- FAQ Section -->
-        <section class="py-24 bg-white dark:bg-[#0B1120]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Dúvidas Frequentes</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Tudo o que você precisa saber antes de começar a sua jornada.</p>
-                </div>
-                <div class="faq-accordion space-y-4">
-                    <!-- FAQ 1 -->
-                    <div class="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-                        <button class="faq-toggle w-full flex justify-between items-center text-left">
-                            <span class="text-lg font-semibold text-slate-800 dark:text-slate-100">Como funciona a garantia de 7 dias?</span>
-                            <svg class="faq-icon w-6 h-6 text-slate-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="faq-answer hidden mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                            <p>Você pode testar a plataforma por 7 dias. Se por qualquer motivo não gostar, basta enviar um email e nós devolvemos 100% do seu dinheiro, sem perguntas.</p>
-                        </div>
-                    </div>
-                    <!-- FAQ 2 -->
-                    <div class="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-                        <button class="faq-toggle w-full flex justify-between items-center text-left">
-                            <span class="text-lg font-semibold text-slate-800 dark:text-slate-100">A IA serve para qualquer concurso?</span>
-                             <svg class="faq-icon w-6 h-6 text-slate-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="faq-answer hidden mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                             <p>Sim! Nossa IA é treinada para analisar qualquer edital em formato PDF. Seja para área fiscal, policial, tribunais, saúde ou educação, ela consegue criar um plano otimizado para sua necessidade.</p>
-                        </div>
-                    </div>
-                    <!-- FAQ 3 -->
-                    <div class="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-                        <button class="faq-toggle w-full flex justify-between items-center text-left">
-                            <span class="text-lg font-semibold text-slate-800 dark:text-slate-100">Preciso ter algum material de estudo?</span>
-                             <svg class="faq-icon w-6 h-6 text-slate-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="faq-answer hidden mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                             <p>A DeepStudy.AI organiza o SEU estudo. Nós não fornecemos o material (videoaulas, PDFs, etc.). Nossa função é ser o cérebro da sua preparação, mostrando o que, quando e como estudar, usando os materiais que você já possui e confia.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        navLinks.forEach(link => {
+            const navId = link.getAttribute('data-nav-id');
+            if (navId === activeSectionId) {
+                link.classList.add('text-brand-600', 'dark:text-brand-400', 'font-bold');
+                link.classList.remove('text-slate-700', 'dark:text-slate-200', 'font-medium');
+            } else {
+                link.classList.remove('text-brand-600', 'dark:text-brand-400', 'font-bold');
+                link.classList.add('text-slate-700', 'dark:text-slate-200', 'font-medium');
+            }
+        });
+    };
 
-        <!-- Final CTA Section -->
-        <section class="py-24 bg-slate-50 dark:bg-[#020617]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
-                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Pronto para ser o próximo aprovado?</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Junte-se a milhares de concurseiros que estão estudando de forma mais inteligente.</p>
-                <a href="#pricing" class="mt-10 inline-flex justify-center items-center px-10 py-5 text-xl font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-xl shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">
-                    Garantir minha vaga com desconto
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-[#0B1120] border-t border-slate-100 dark:border-slate-800/50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
-                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-                    <span class="text-lg font-bold text-slate-800 dark:text-white">DeepStudy<span class="text-brand-600 dark:text-brand-400">.AI</span></span>
-                </div>
-                <p class="text-sm text-slate-500 text-center md:text-right">&copy; 2024 DeepStudy.AI. Todos os direitos reservados. Feito para acelerar sua aprovação.</p>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Initial check on load
+});
