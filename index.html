@@ -23,9 +23,6 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
 
-    <!-- Optimized, built stylesheet -->
-    <link rel="stylesheet" href="/output.css">
-
     <script>
         // Anti-flash script to force dark mode immediately
         if (true) { // We are forcing dark mode
@@ -56,8 +53,14 @@
           background-color: rgba(2, 6, 23, 0); /* Fully transparent in dark mode */
       }
     </style>
-    <!-- Import script module -->
-    <script type="module" src="./index.tsx"></script>
+<script type="importmap">
+{
+  "imports": {
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4"
+  }
+}
+</script>
 </head>
 <body class="bg-slate-50 dark:bg-[#020617] text-slate-700 dark:text-slate-300 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300">
 
@@ -760,5 +763,7 @@
         </div>
     </footer>
 
+    <!-- Vite script entry point -->
+    <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
