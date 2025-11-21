@@ -14,7 +14,6 @@
     <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
 
     <!-- Preconnect to critical origins -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
@@ -24,62 +23,13 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
 
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Optimized, built stylesheet -->
+    <link rel="stylesheet" href="/styles/output.css">
+
     <script>
         // Anti-flash script to force dark mode immediately
         if (true) { // We are forcing dark mode
             document.documentElement.classList.add('dark');
-        }
-
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            200: '#a7f3d0',
-                            300: '#6ee7b7',
-                            400: '#34d399',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b',
-                            950: '#022c22',
-                        },
-                        accent: {
-                             50: '#f0f9ff',
-                             500: '#0ea5e9', // Sky blue for trust
-                        }
-                    },
-                    animation: {
-                        'scroll': 'scroll 40s linear infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'blob': 'blob 7s infinite',
-                    },
-                    keyframes: {
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        }
-                    }
-                }
-            }
         }
     </script>
     <style>
@@ -261,7 +211,7 @@
                     <!-- Card 1 -->
                     <div class="flex gap-5 items-start p-6 rounded-3xl bg-slate-50 dark:bg-[#0B1120] hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-slate-200/50">
                          <div class="relative flex-shrink-0">
-                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=112&auto=format&fit=crop" alt="Carla Dias" width="56" height="56">
+                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=70&w=112&auto=format&fit=crop" alt="Carla Dias" width="56" height="56">
                              <div class="absolute -bottom-2 -right-2 bg-brand-500 rounded-full p-1 border-2 border-white dark:border-slate-900">
                                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                              </div>
@@ -685,7 +635,7 @@
                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
                             <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
                             <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=96&auto=format&fit=crop" alt="Juliana Almeida" width="48" height="48">
+                                <img class="w-12 h-12 rounded-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=70&w=96&auto=format&fit=crop" alt="Juliana Almeida" width="48" height="48">
                                 <div>
                                     <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
                                     <p class="text-sm text-slate-500">Aprovada - MPU</p>
@@ -718,7 +668,7 @@
                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
                             <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
                             <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=96&auto=format&fit=crop" alt="Juliana Almeida" width="48" height="48">
+                                <img class="w-12 h-12 rounded-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=70&w=96&auto=format&fit=crop" alt="Juliana Almeida" width="48" height="48">
                                 <div>
                                     <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
                                     <p class="text-sm text-slate-500">Aprovada - MPU</p>

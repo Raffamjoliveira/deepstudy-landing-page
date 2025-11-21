@@ -1,20 +1,12 @@
 {
-  "name": "copy-of-deepstudy.ai-landing-page",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "deepstudy-ai-landing",
+  "version": "1.0.0",
+  "description": "Landing page for DeepStudy.AI",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-
+    "build:css": "tailwindcss -i ./styles/input.css -o ./styles/output.css --minify",
+    "watch:css": "tailwindcss -i ./styles/input.css -o ./styles/output.css --watch"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "tailwindcss": "^3.4.1"
   }
 }
