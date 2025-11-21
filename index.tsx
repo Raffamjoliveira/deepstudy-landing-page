@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const throttle = (func: (...args: any[]) => void, limit: number) => {
+        let inThrottle: boolean;
+        return function(this: any, ...args: any[]) {
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    };
+
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -83,6 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', throttle(onScroll, 200), { passive: true });
     onScroll(); // Initial check on load
 });
