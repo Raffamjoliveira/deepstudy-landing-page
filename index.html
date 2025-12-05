@@ -1,47 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth dark">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeepStudy.AI | A plataforma definitiva para sua aprovação</title>
     <meta name="description" content="Use Inteligência Artificial para criar um plano estratégico, analisar seus pontos fracos e focar no que realmente cai na prova.">
-    <meta name="facebook-domain-verification" content="sj2j090md4qyio9lzpbtrp1rfxcxeg" />
     
-    <!-- Meta Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1083649257004430');
-      fbq('track', 'PageView');
-    </script>
-    <!-- End Meta Pixel Code -->
-
-    <!-- Favicon Links -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Anti-flash script - ensuring dark mode by default
-        if (true) { 
-            document.documentElement.classList.add('dark');
-        }
-
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: 'media',
             theme: {
                 extend: {
                     fontFamily: {
@@ -119,9 +91,6 @@
     <script type="module" src="./index.js"></script>
 </head>
 <body class="bg-slate-50 dark:bg-[#020617] text-slate-700 dark:text-slate-300 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300">
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1083649257004430&ev=PageView&noscript=1"
-    /></noscript>
 
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 header-glass border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 shadow-sm">
@@ -155,10 +124,6 @@
 
                 <!-- Action Buttons -->
                 <div class="hidden md:flex items-center gap-4">
-                    <!-- 6. Login -->
-                    <a href="#pricing" class="px-6 py-2.5 text-sm font-bold rounded-xl text-brand-700 bg-white/90 backdrop-blur-sm border border-brand-200 hover:bg-brand-50 hover:border-brand-500 hover:text-brand-800 transition-all shadow-sm dark:bg-slate-900/80 dark:text-brand-400 dark:border-brand-900/50 dark:hover:text-brand-300">
-                        Login
-                    </a>
                     <!-- 7. Começar Agora -->
                     <a href="#pricing" class="px-6 py-2.5 text-sm font-bold rounded-xl text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transition-all transform hover:-translate-y-0.5">
                         Começar Agora
@@ -184,9 +149,8 @@
                 <a href="#testimonials" data-nav-id="testimonials" class="nav-link block px-4 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600">Depoimentos</a>
                 <a href="#pricing" data-nav-id="pricing" class="nav-link block px-4 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600">Planos</a>
                 
-                <div class="grid grid-cols-2 gap-4 pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
-                     <a href="#pricing" class="text-center px-4 py-3 text-sm font-bold rounded-xl text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-900 hover:bg-brand-50 dark:hover:bg-slate-800 transition-all">Login</a>
-                    <a href="#pricing" class="text-center px-4 py-3 text-sm font-bold rounded-xl text-white bg-brand-600 hover:bg-brand-500 shadow-md transition-all">Começar</a>
+                <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+                    <a href="#pricing" class="block text-center px-4 py-3 text-sm font-bold rounded-xl text-white bg-brand-600 hover:bg-brand-500 shadow-md transition-all">Começar Agora</a>
                 </div>
             </div>
         </div>
@@ -273,7 +237,7 @@
                     <!-- Card 1 -->
                     <div class="flex gap-5 items-start p-6 rounded-3xl bg-slate-50 dark:bg-[#0B1120] hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-slate-200/50">
                          <div class="relative flex-shrink-0">
-                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop" alt="Carla Dias">
+                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/women/63.jpg" alt="Carla Dias">
                              <div class="absolute -bottom-2 -right-2 bg-brand-500 rounded-full p-1 border-2 border-white dark:border-slate-900">
                                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                              </div>
@@ -290,7 +254,7 @@
                     <!-- Card 2 -->
                     <div class="flex gap-5 items-start p-6 rounded-3xl bg-slate-50 dark:bg-[#0B1120] hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-slate-200/50">
                          <div class="relative flex-shrink-0">
-                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Bruno Silva">
+                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/men/85.jpg" alt="Bruno Silva">
                               <div class="absolute -bottom-2 -right-2 bg-brand-500 rounded-full p-1 border-2 border-white dark:border-slate-900">
                                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                              </div>
@@ -307,7 +271,7 @@
                     <!-- Card 3 -->
                     <div class="flex gap-5 items-start p-6 rounded-3xl bg-slate-50 dark:bg-[#0B1120] hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all hover:shadow-xl hover:shadow-slate-200/50">
                          <div class="relative flex-shrink-0">
-                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Leticia Costa">
+                             <img class="h-14 w-14 rounded-2xl object-cover shadow-sm" src="https://randomuser.me/api/portraits/women/21.jpg" alt="Leticia Costa">
                               <div class="absolute -bottom-2 -right-2 bg-brand-500 rounded-full p-1 border-2 border-white dark:border-slate-900">
                                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                              </div>
@@ -568,65 +532,53 @@
                                 <span>Flash Cards com IA</span>
                             </li>
                         </ul>
-                        <a href="https://pay.cakto.com.br/32vromm_654563" onclick="fbq('track', 'InitiateCheckout', {
-  value: 34.90,
-  currency: 'BRL',
-  content_name: 'Assinatura Mensal'
-});" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
+                        <a href="https://pay.cakto.com.br/3epkcd2_658166" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
                     
                     <!-- Trimestral (Most Popular) -->
-                    <div class="relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 flex flex-col shadow-xl shadow-slate-200/40 dark:shadow-none hover:border-brand-200 transition-all h-full">
+                    <div class="relative bg-brand-600 dark:bg-brand-700 border border-brand-500 rounded-[2rem] p-8 flex flex-col shadow-2xl shadow-brand-600/40 h-full">
                         <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-slate-900 dark:bg-slate-950 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border-2 border-brand-500">Mais Popular</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Trimestral</h3>
-                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 font-medium">Economize 2 meses e acelere seus estudos.</p>
+                        <h3 class="text-xl font-bold text-white">Trimestral</h3>
+                        <p class="mt-2 text-sm text-brand-200 font-medium">Economize 2 meses e acelere seus estudos.</p>
                         <div class="mt-8">
-                            <p class="text-red-500 font-semibold text-sm">de <span class="line-through">R$ 27,90</span> por</p>
+                            <p class="text-red-300 font-semibold text-sm">de <span class="line-through">R$ 27,90</span> por</p>
                             <div class="flex items-baseline gap-1">
-                                <span class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">R$ 19,90</span>
-                                <span class="text-slate-500 dark:text-slate-400 font-semibold">por mês</span>
+                                <span class="text-4xl font-bold tracking-tight text-white">R$ 19,90</span>
+                                <span class="text-brand-200 font-semibold">/mês</span>
                             </div>
-                            <p class="text-xs text-slate-500 mt-1">ou à vista por apenas R$ 51,00</p>
+                            <p class="text-xs text-brand-200 mt-1">Cobrado R$ 51,00 a cada 3 meses</p>
                         </div>
-                        <ul class="mt-8 space-y-4 text-sm font-medium text-slate-600 dark:text-slate-300 flex-grow">
+                        <ul class="mt-8 space-y-4 text-sm font-medium text-brand-100 dark:text-brand-200 flex-grow">
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>10 Planos + Cronograma de Estudo IA / Mês</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>10 Raio-x do Edital e das provas anteriores</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Tutor Gemini Pro Ilimitado</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Métricas de Desempenho</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Banco de Questões</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>1000 pedidos de provas anteriores</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>5 Gerações de Simulado baseado no Espelho da Banca</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Flash Cards com IA</span>
                             </li>
                         </ul>
-                        <a href="https://pay.cakto.com.br/3epkcd2_658166" onclick="fbq('track', 'InitiateCheckout', {
-  value: 19.90,
-  currency: 'BRL',
-  content_name: 'Assinatura Trimestral'
-});" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
+                        <a href="https://pay.cakto.com.br/3epkcd2_658166" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand-700 bg-white hover:bg-brand-50 transition-all shadow-lg transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
 
                     <!-- Anual -->
@@ -639,7 +591,7 @@
                                 <span class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">R$ 11,90</span>
                                 <span class="text-slate-500 dark:text-slate-400 font-semibold">/mês</span>
                             </div>
-                            <p class="text-xs text-slate-500 mt-1">ou à vista por apenas R$ 97,00</p>
+                            <p class="text-xs text-slate-500 mt-1">Cobrado R$ 97,00 por ano</p>
                         </div>
                         <ul class="mt-8 space-y-4 text-sm font-medium text-slate-600 dark:text-slate-300 flex-grow">
                              <li class="flex items-start gap-3">
@@ -668,27 +620,12 @@
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>10 Gerações de Simulado baseado no Espelho da Banca</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Flash Cards com IA - <strong>Ilimitado</strong></span>
                             </li>
                         </ul>
-                        <a href="https://pay.cakto.com.br/cdf3frg_656564" onclick="fbq('track', 'InitiateCheckout', {
-  value: 11.90,
-  currency: 'BRL',
-  content_name: 'Assinatura Anual'
-});" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
+                        <a href="https://pay.cakto.com.br/cdf3frg_656564" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
                 </div>
-
-                <div class="mt-16 text-center">
-                    <a href="#pricing" class="inline-flex items-center justify-center px-8 py-3 font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm">
-                        Compare Planos
-                    </a>
-                </div>
-
             </div>
         </section>
 
@@ -706,7 +643,7 @@
                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
                             <p class="text-slate-600 dark:text-slate-300 italic mb-6">"A análise do edital por IA me mostrou o que priorizar. Foi um divisor de águas. Consegui focar 80% do meu tempo nos 20% de conteúdo que mais caem. Resultado: aprovação em tempo recorde!"</p>
                             <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Roberto Mendes">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Roberto Mendes">
                                 <div>
                                     <p class="font-bold text-slate-800 dark:text-slate-100">Roberto Mendes</p>
                                     <p class="text-sm text-slate-500">Aprovado - Polícia Federal</p>
@@ -717,7 +654,7 @@
                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
                             <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
                             <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop" alt="Juliana Almeida">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana Almeida">
                                 <div>
                                     <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
                                     <p class="text-sm text-slate-500">Aprovada - MPU</p>
@@ -728,7 +665,7 @@
                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
                             <p class="text-slate-600 dark:text-slate-300 italic mb-6">"O Tutor Gemini é como ter um professor particular 24 horas por dia. Qualquer dúvida, em qualquer matéria, era respondida na hora, de forma clara. Essencial na reta final."</p>
                             <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/78.jpg" alt="Fernando Oliveira">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/5.jpg" alt="Fernando Oliveira">
                                 <div>
                                     <p class="font-bold text-slate-800 dark:text-slate-100">Fernando Oliveira</p>
                                     <p class="text-sm text-slate-500">Aprovado - Banco Central</p>
@@ -739,7 +676,7 @@
                          <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
                             <p class="text-slate-600 dark:text-slate-300 italic mb-6">"A análise do edital por IA me mostrou o que priorizar. Foi um divisor de águas. Consegui focar 80% do meu tempo nos 20% de conteúdo que mais caem. Resultado: aprovação em tempo recorde!"</p>
                             <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/75.jpg" alt="Roberto Mendes">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Roberto Mendes">
                                 <div>
                                     <p class="font-bold text-slate-800 dark:text-slate-100">Roberto Mendes</p>
                                     <p class="text-sm text-slate-500">Aprovado - Polícia Federal</p>
@@ -750,7 +687,7 @@
                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
                             <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
                             <div class="flex items-center gap-4">
-                                <img class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop" alt="Juliana Almeida">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana Almeida">
                                 <div>
                                     <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
                                     <p class="text-sm text-slate-500">Aprovada - MPU</p>
