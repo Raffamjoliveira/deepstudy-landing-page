@@ -30,57 +30,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Meta Pixel Code with Advanced Matching Manual -->
-    <script>
-    // 1. Funções de captura de dados (Executadas antes do Pixel iniciar)
-    var getUrlParam = function(name) {
-        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        return results ? decodeURIComponent(results[1]) : null;
-    };
-
-    var getExternalId = function() {
-        var storageKey = 'fbp_external_id';
-        var id = localStorage.getItem(storageKey);
-        if (!id) {
-            // Gera ID único: timestamp + random
-            id = 'user_' + Date.now() + '_' + Math.floor(Math.random() * 1000000000);
-            localStorage.setItem(storageKey, id);
-        }
-        return id;
-    };
-
-    // 2. Preparação dos dados do usuário
-    var userData = {
-        external_id: getExternalId(),
-        em: getUrlParam('email') || getUrlParam('em'),  // Email
-        ph: getUrlParam('phone') || getUrlParam('ph'),  // Phone
-        fn: getUrlParam('fn') || getUrlParam('first_name'), // First Name
-        ln: getUrlParam('ln') || getUrlParam('last_name'),  // Last Name
-        ct: getUrlParam('city'),
-        st: getUrlParam('state'),
-        zp: getUrlParam('zip')
-    };
-
-    // Remove chaves vazias/nulas para manter o objeto limpo
-    Object.keys(userData).forEach(key => userData[key] === null && delete userData[key]);
-
-    // 3. Inicialização Padrão do Pixel
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    // 4. Init com Correspondência Avançada e ID CORRETO
-    fbq('init', '1083649257004430', userData);
-
-    fbq('track', 'PageView');
-    </script>
-    <!-- End Meta Pixel Code -->
-
     <!-- Structured Data (JSON-LD) - Essencial para Sitelinks e Rich Snippets -->
     <script type="application/ld+json">
     {
@@ -275,7 +224,7 @@
                 </div>
 
                 <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-3 drop-shadow-sm">
-                    Seja <span class="text-brand-600">aprovado</span> ainda esse ano em um Concurso
+                    Transforme sua preparação para Concursos e <span class="text-brand-600">acelere sua aprovação</span>
                 </h1>
                 
                 <p class="max-w-2xl mx-auto mt-6 text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed mb-8 font-medium">
@@ -391,6 +340,172 @@
             </div>
         </section>
 
+        <!-- How it Works Section -->
+        <section id="how-it-works" class="py-24 bg-white dark:bg-[#0B1120] relative">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+                <div class="text-center mb-20">
+                    <span class="text-brand-600 dark:text-brand-400 font-bold tracking-wider uppercase text-sm">Metodologia</span>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mt-3">Sua aprovação em 7 passos.</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Deixe a burocracia com a gente e foque apenas em estudar.</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8 text-center relative">
+                     <!-- Step 1 -->
+                    <div class="relative z-10 group w-full sm:w-64">
+                        <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">1</span>
+                        </div>
+                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Envie seu Edital</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Upload do PDF. A IA analisa todo o conteúdo programático.</p>
+                    </div>
+                     <!-- Step 2 -->
+                    <div class="relative z-10 group w-full sm:w-64">
+                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">2</span>
+                        </div>
+                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Receba seu Plano + Cronograma</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Cronograma diário com metas, matérias e revisões.</p>
+                    </div>
+                     <!-- Step 3 -->
+                    <div class="relative z-10 group w-full sm:w-64">
+                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">3</span>
+                        </div>
+                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Tutor Gemini</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Tire dúvidas com IA treinada para concursos públicos.</p>
+                    </div>
+                     <!-- Step 4 -->
+                    <div class="relative z-10 group w-full sm:w-64">
+                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">4</span>
+                        </div>
+                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Pratique Questões</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Questões de provas anteriores selecionadas pelo suporte.</p>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="relative z-10 group w-full sm:w-64">
+                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">5</span>
+                        </div>
+                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Flashcards SRS</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Além de ter uma IA que gera seus flashcards, ela funciona com um o mesmo sistema de revisoes do algoritmo usado no app Ankidroid, com revisão espaçada programada automaticamente dentro do app.</p>
+                    </div>
+                    <!-- Step 6 -->
+                    <div class="relative z-10 group w-full sm:w-64">
+                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">6</span>
+                        </div>
+                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Métricas</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Descubra seus pontos fortes e fracos com análise de dados.</p>
+                    </div>
+                    <!-- Step 7 -->
+                    <div class="relative z-10 group w-full sm:w-64">
+                         <div class="mx-auto w-20 h-20 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none group-hover:scale-110 transition-transform duration-300">
+                            <span class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-br from-brand-600 to-teal-400">7</span>
+                        </div>
+                        <h3 class="mt-6 text-lg font-bold text-slate-900 dark:text-white">Reforço IA 24/7</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed px-2">Tire Dúvidas 24h por 7 dias da semana sobre qualquer tema do direito ou tópico do seu edital de forma personalizada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-24 bg-slate-50 dark:bg-[#020617]">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Arsenal de aprovação.</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Ferramentas desenhadas para máxima eficiência cognitiva.</p>
+                </div>
+
+                <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                    <!-- Card 1 -->
+                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
+                        <div class="w-14 h-14 mb-6 rounded-2xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center text-brand-600 dark:text-brand-400">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Plano IA Adaptativo</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Cronograma que se ajusta automaticamente se você falhar um dia ou tiver imprevistos.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
+                        <div class="w-14 h-14 mb-6 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Análise do Edital</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">A IA analisa as provas recentes do seu concurso e cruza os dados com o edital, com isso ela gera um raio-x dos temas e assuntos prioritários com base no que realmente caiu.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
+                        <div class="w-14 h-14 mb-6 rounded-2xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Métricas de Evolução</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Dashboards detalhados para você ver sua nota subindo simulado após simulado.</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/40 dark:shadow-none hover:-translate-y-1 transition-transform duration-300 border border-slate-100 dark:border-slate-800">
+                        <div class="w-14 h-14 mb-6 rounded-2xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Flashcards SRS</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Sistema de repetição espaçada para garantir que você jamais esqueça o que estudou.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Ideal para quem -->
+        <section class="py-24 bg-white dark:bg-[#0B1120]">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Ideal para quem:</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Card 1 -->
+                    <div class="flex flex-col sm:flex-row gap-6 p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 items-start hover:shadow-lg transition-shadow">
+                         <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center text-brand-600 dark:text-brand-400">
+                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                         </div>
+                         <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Busca Organizar os estudos de forma Estratégica</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Para você que não quer apenas um plano bonito, mas sim um Plano+Cronograma personalizado para seu Edital, configurado para sua disponibilidade de dias e horas de estudo.</p>
+                         </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="flex flex-col sm:flex-row gap-6 p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 items-start hover:shadow-lg transition-shadow">
+                         <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                         </div>
+                         <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Quer Estudar o que realmente é Cobrado</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Para você que já entendeu que apenas 60% em média do conteúdo previsto no Edital realmente cai nas provas e quer estudar com prioridade os assuntos mais recorrentes.</p>
+                         </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="flex flex-col sm:flex-row gap-6 p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 items-start hover:shadow-lg transition-shadow">
+                         <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                         </div>
+                         <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Quer aumentar os acertos</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Você que já compreendeu que resolver questões é o 80/20 do jogo e quer ter disponível uma ferramenta que produz questões por demanda, com o auxilio de uma IA treinada para gerar simulados de acordo com o padrão semântico da sua Banca.</p>
+                         </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="flex flex-col sm:flex-row gap-6 p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 items-start hover:shadow-lg transition-shadow">
+                         <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                         </div>
+                         <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Procura revisar com flashcards de forma espaçada</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Para você que descobriu que memorizar altos volumes de conteúdo de forma rápida e precisa exige espaçamento entre as revisões e organização dos flashcards.</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Pricing Anchor (Value Stacking) Section -->
         <section class="py-24 bg-[#0B1120] dark:bg-[#020617] relative overflow-hidden">
             <!-- Background texture -->
@@ -479,354 +594,255 @@
 
                 <div class="mt-20 grid gap-8 md:gap-10 grid-cols-1 md:grid-cols-3 items-start">
                     <!-- Mensal -->
-                    <div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 flex flex-col shadow-xl shadow-slate-200/50 dark:shadow-none hover:-translate-y-2 transition-transform duration-300">
-                        <div class="mb-4">
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Mensal</h3>
-                            <p class="text-slate-500 dark:text-slate-400">Flexibilidade total.</p>
+                    <div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 flex flex-col shadow-xl shadow-slate-200/40 dark:shadow-none hover:border-brand-200 transition-all h-full">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mensal</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 font-medium">Acesso completo, pague mês a mês.</p>
+                        <div class="mt-8">
+                            <p class="text-red-500 font-semibold text-sm">de <span class="line-through">R$39,90</span> por</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">R$ 34,90</span>
+                                <span class="text-slate-500 dark:text-slate-400 font-semibold">/mês</span>
+                            </div>
                         </div>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900 dark:text-white">R$ 39,90</span>
-                            <span class="text-slate-500 dark:text-slate-400 ml-2">/mês</span>
-                        </div>
-                         <!-- Feature List -->
-                        <ul class="space-y-4 mb-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Mentoria IA ilimitada
+                        <ul class="mt-8 space-y-4 text-sm font-medium text-slate-600 dark:text-slate-300 flex-grow">
+                           <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>5 Planos + Cronograma de Estudo IA / Mês</span>
                             </li>
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Criação de plano de estudo
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>5 Raio-x do Edital e das provas anteriores</span>
                             </li>
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Edição de cronograma
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Tutor Gemini Pro Ilimitado</span>
                             </li>
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Flashcards
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Métricas de Desempenho</span>
                             </li>
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Simulados
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Banco de Questões</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>100 pedidos de provas anteriores</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Flash Cards com IA</span>
                             </li>
                         </ul>
-                         <a href="https://pay.cakto.com.br/lQc58jM" class="block w-full py-3.5 px-6 text-center text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-all border border-slate-200 dark:border-slate-700">
-                            Assinar Mensal
-                        </a>
+                        <a href="https://pay.cakto.com.br/32vromm_654563" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
                     
-                    <!-- Trimestral (Destaque) -->
-                    <div class="relative bg-slate-900 dark:bg-slate-800 border-2 border-brand-500 rounded-[2rem] p-8 flex flex-col shadow-2xl shadow-brand-900/40 transform md:-translate-y-4 hover:-translate-y-6 transition-transform duration-300 z-10">
-                         <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-600 to-brand-400 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
-                            Mais Popular
+                    <!-- Trimestral (Most Popular) -->
+                    <div class="relative bg-brand-600 dark:bg-brand-700 border border-brand-500 rounded-[2rem] p-8 flex flex-col shadow-2xl shadow-brand-600/40 h-full">
+                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-slate-900 dark:bg-slate-950 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border-2 border-brand-500">Mais Popular</span>
+                        <h3 class="text-xl font-bold text-white">Trimestral</h3>
+                        <p class="mt-2 text-sm text-brand-200 font-medium">Economize 2 meses e acelere seus estudos.</p>
+                        <div class="mt-8">
+                            <p class="text-red-300 font-semibold text-sm">de <span class="line-through">R$ 27,90</span> por</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl font-bold tracking-tight text-white">R$ 19,90</span>
+                                <span class="text-brand-200 font-semibold">/mês</span>
+                            </div>
+                            <p class="text-xs text-brand-200 mt-1">Cobrado R$ 51,00 a cada 3 meses</p>
                         </div>
-                        <div class="mb-4">
-                            <h3 class="text-2xl font-bold text-white">Trimestral</h3>
-                            <p class="text-slate-400">Economia inteligente.</p>
-                        </div>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-5xl font-extrabold text-white">R$ 29,90</span>
-                            <span class="text-slate-400 ml-2">/mês</span>
-                        </div>
-                        <p class="text-xs text-brand-300 font-bold mb-6 uppercase tracking-wide">Cobrado R$ 89,70 a cada 3 meses</p>
-                        
-                        <!-- Feature List -->
-                        <ul class="space-y-4 mb-8 text-sm font-medium text-slate-300">
-                             <li class="flex items-center gap-3 text-white">
-                                <div class="bg-brand-500 rounded-full p-0.5">
-                                     <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                </div>
-                                Tudo do plano mensal
+                        <ul class="mt-8 space-y-4 text-sm font-medium text-brand-100 dark:text-brand-200 flex-grow">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>10 Planos + Cronograma de Estudo IA / Mês</span>
                             </li>
-                             <li class="flex items-center gap-3 text-white">
-                                <div class="bg-brand-500 rounded-full p-0.5">
-                                     <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                </div>
-                                Prioridade no suporte
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>10 Raio-x do Edital e das provas anteriores</span>
                             </li>
-                             <li class="flex items-center gap-3 text-white">
-                                <div class="bg-brand-500 rounded-full p-0.5">
-                                     <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                </div>
-                                Acesso a novos recursos Beta
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Tutor Gemini Pro Ilimitado</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Métricas de Desempenho</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Banco de Questões</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>1000 pedidos de provas anteriores</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Flash Cards com IA</span>
                             </li>
                         </ul>
-                         <a href="https://pay.cakto.com.br/3f88y3K" class="block w-full py-4 px-6 text-center text-base font-bold text-white bg-brand-600 hover:bg-brand-500 rounded-xl transition-all shadow-lg shadow-brand-600/30">
-                            QUERO APROVAR AGORA
-                        </a>
+                        <a href="https://pay.cakto.com.br/3epkcd2_658166" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand-700 bg-white hover:bg-brand-50 transition-all shadow-lg transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
-                    
-                    <!-- Anual -->
-                    <div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 flex flex-col shadow-xl shadow-slate-200/50 dark:shadow-none hover:-translate-y-2 transition-transform duration-300">
-                        <div class="mb-4">
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Anual</h3>
-                            <p class="text-slate-500 dark:text-slate-400">Compromisso sério.</p>
-                        </div>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900 dark:text-white">R$ 19,90</span>
-                            <span class="text-slate-500 dark:text-slate-400 ml-2">/mês</span>
-                        </div>
-                         <p class="text-xs text-green-600 dark:text-green-400 font-bold mb-6 uppercase tracking-wide">Cobrado R$ 238,80 por ano</p>
 
-                         <!-- Feature List -->
-                        <ul class="space-y-4 mb-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Maior desconto disponível
+                    <!-- Anual -->
+                    <div class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 flex flex-col shadow-xl shadow-slate-200/40 dark:shadow-none hover:border-brand-200 transition-all h-full">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Anual</h3>
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 font-medium">Melhor custo-benefício para aprovação.</p>
+                        <div class="mt-8">
+                            <p class="text-red-500 font-semibold text-sm">de <span class="line-through">R$ 16,90</span> por</p>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">R$ 11,90</span>
+                                <span class="text-slate-500 dark:text-slate-400 font-semibold">/mês</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">Cobrado R$ 97,00 por ano</p>
+                        </div>
+                        <ul class="mt-8 space-y-4 text-sm font-medium text-slate-600 dark:text-slate-300 flex-grow">
+                             <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Planos + Cronograma de Estudo IA - <strong>Ilimitado</strong></span>
                             </li>
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Acesso a todos os recursos
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Raio-x do Edital e das provas anteriores - <strong>Ilimitado</strong></span>
                             </li>
-                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Grupo VIP de alunos
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Tutor Gemini Pro Ilimitado</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Métricas de Desempenho</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Banco de Questões</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Pedidos de provas anteriores - <strong>Ilimitados</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Flash Cards com IA - <strong>Ilimitado</strong></span>
                             </li>
                         </ul>
-                         <a href="https://pay.cakto.com.br/347K8bC" class="block w-full py-3.5 px-6 text-center text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-all border border-slate-200 dark:border-slate-700">
-                            Assinar Anual
-                        </a>
+                        <a href="https://pay.cakto.com.br/cdf3frg_656564" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials Carousel Section -->
-        <section id="testimonials" class="py-24 bg-slate-50 dark:bg-[#020617] overflow-hidden">
-             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-24 bg-slate-50 dark:bg-[#020617]">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Quem usa, aprova.</h2>
-                    <p class="mt-4 text-lg text-slate-600 dark:text-slate-400">Junte-se a comunidade que mais cresce no Brasil.</p>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Amado por concurseiros de todo o Brasil.</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Veja o que nossos alunos estão dizendo sobre a revolução nos estudos.</p>
                 </div>
 
-                <!-- Scrolling Rows -->
-                <div class="space-y-8">
-                    <!-- Row 1: Left to Right -->
-                    <div class="relative w-full overflow-hidden group">
-                         <div class="flex animate-scroll gap-6 w-max hover:[animation-play-state:paused]">
-                              <!-- Cards Set 1 -->
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Lucas Mendes</p>
-                                           <p class="text-xs text-slate-500">TJ-RJ</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"A organização é impecável. Nunca mais perdi tempo montando planilhas."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Fernanda Lima</p>
-                                           <p class="text-xs text-slate-500">OAB</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Passei na OAB estudando 2h por dia com o cronograma da DeepStudy."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/67.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Roberto Alves</p>
-                                           <p class="text-xs text-slate-500">Polícia Civil</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"O banco de questões é muito atualizado. Vale cada centavo."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/12.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Ana Paula</p>
-                                           <p class="text-xs text-slate-500">Banco do Brasil</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Fui aprovada no BB graças aos simulados semanais."</p>
-                              </div>
-                               <!-- Duplicate for smooth scroll -->
-                               <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Lucas Mendes</p>
-                                           <p class="text-xs text-slate-500">TJ-RJ</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"A organização é impecável. Nunca mais perdi tempo montando planilhas."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Fernanda Lima</p>
-                                           <p class="text-xs text-slate-500">OAB</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Passei na OAB estudando 2h por dia com o cronograma da DeepStudy."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/67.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Roberto Alves</p>
-                                           <p class="text-xs text-slate-500">Polícia Civil</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"O banco de questões é muito atualizado. Vale cada centavo."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/12.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Ana Paula</p>
-                                           <p class="text-xs text-slate-500">Banco do Brasil</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Fui aprovada no BB graças aos simulados semanais."</p>
-                              </div>
-                         </div>
+                <div class="relative">
+                    <div class="flex gap-8 overflow-x-auto scrollbar-hide pb-8 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                        <!-- Testimonial 1 -->
+                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
+                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"A análise do edital por IA me mostrou o que priorizar. Foi um divisor de águas. Consegui focar 80% do meu tempo nos 20% de conteúdo que mais caem. Resultado: aprovação em tempo recorde!"</p>
+                            <div class="flex items-center gap-4">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Roberto Mendes">
+                                <div>
+                                    <p class="font-bold text-slate-800 dark:text-slate-100">Roberto Mendes</p>
+                                    <p class="text-sm text-slate-500">Aprovado - Polícia Federal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 2 -->
+                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
+                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
+                            <div class="flex items-center gap-4">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana Almeida">
+                                <div>
+                                    <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
+                                    <p class="text-sm text-slate-500">Aprovada - MPU</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 3 -->
+                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
+                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"O Tutor Gemini é como ter um professor particular 24 horas por dia. Qualquer dúvida, em qualquer matéria, era respondida na hora, de forma clara. Essencial na reta final."</p>
+                            <div class="flex items-center gap-4">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Beatriz Souza">
+                                <div>
+                                    <p class="font-bold text-slate-800 dark:text-slate-100">Beatriz Souza</p>
+                                    <p class="text-sm text-slate-500">Aprovada - Banco Central</p>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Testimonial 4 (Duplicate) -->
+                         <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
+                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"A análise do edital por IA me mostrou o que priorizar. Foi um divisor de águas. Consegui focar 80% do meu tempo nos 20% de conteúdo que mais caem. Resultado: aprovação em tempo recorde!"</p>
+                            <div class="flex items-center gap-4">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Roberto Mendes">
+                                <div>
+                                    <p class="font-bold text-slate-800 dark:text-slate-100">Roberto Mendes</p>
+                                    <p class="text-sm text-slate-500">Aprovado - Polícia Federal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial 5 (Duplicate) -->
+                        <div class="w-[90%] sm:w-1/2 md:w-[40%] lg:w-1/3 flex-shrink-0 bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-100 dark:border-slate-800">
+                            <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Nunca fui boa em me organizar. O plano de estudos diário que a plataforma cria é simplesmente perfeito. Abro o app e sei exatamente o que fazer. Acabou a procrastinação."</p>
+                            <div class="flex items-center gap-4">
+                                <img class="w-12 h-12 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Juliana Almeida">
+                                <div>
+                                    <p class="font-bold text-slate-800 dark:text-slate-100">Juliana Almeida</p>
+                                    <p class="text-sm text-slate-500">Aprovada - MPU</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Row 2: Right to Left (Reverse) -->
-                    <div class="relative w-full overflow-hidden group">
-                         <div class="flex animate-scroll gap-6 w-max hover:[animation-play-state:paused]" style="animation-direction: reverse;">
-                              <!-- Cards Set 2 -->
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/89.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Julia Costa</p>
-                                           <p class="text-xs text-slate-500">MPU</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"O tutor IA tira dúvidas melhor que muito professor de cursinho."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/22.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Marcos Silva</p>
-                                           <p class="text-xs text-slate-500">Auditor Fiscal</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"A análise de edital é cirúrgica. Estudei exatamente o que caiu."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Camila Santos</p>
-                                           <p class="text-xs text-slate-500">TRT</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Os flashcards me salvaram na hora da revisão. Recomendo!"</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/55.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Paulo Ricardo</p>
-                                           <p class="text-xs text-slate-500">PRF</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Plataforma completa. O design é lindo e muito fácil de usar."</p>
-                              </div>
-                              <!-- Duplicate -->
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/89.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Julia Costa</p>
-                                           <p class="text-xs text-slate-500">MPU</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"O tutor IA tira dúvidas melhor que muito professor de cursinho."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/22.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Marcos Silva</p>
-                                           <p class="text-xs text-slate-500">Auditor Fiscal</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"A análise de edital é cirúrgica. Estudei exatamente o que caiu."</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Camila Santos</p>
-                                           <p class="text-xs text-slate-500">TRT</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Os flashcards me salvaram na hora da revisão. Recomendo!"</p>
-                              </div>
-                              <div class="w-80 p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800">
-                                   <div class="flex items-center gap-4 mb-4">
-                                       <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/55.jpg" alt="User">
-                                       <div>
-                                           <p class="text-sm font-bold text-slate-900 dark:text-white">Paulo Ricardo</p>
-                                           <p class="text-xs text-slate-500">PRF</p>
-                                       </div>
-                                   </div>
-                                   <p class="text-sm text-slate-600 dark:text-slate-300">"Plataforma completa. O design é lindo e muito fácil de usar."</p>
-                              </div>
-                         </div>
+                    <!-- Scroll arrow indicator -->
+                    <div class="absolute top-1/2 right-0 -translate-y-1/2 hidden md:flex items-center justify-center w-24 h-full bg-gradient-to-l from-slate-50 dark:from-[#020617] to-transparent pointer-events-none z-10 opacity-75">
+                        <svg class="w-8 h-8 text-slate-500 animate-pulse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
                     </div>
                 </div>
-             </div>
+            </div>
         </section>
 
         <!-- FAQ Section -->
         <section class="py-24 bg-white dark:bg-[#0B1120]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Dúvidas Frequentes</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Dúvidas Frequentes</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Tudo o que você precisa saber antes de começar a sua jornada.</p>
                 </div>
-                
                 <div class="faq-accordion space-y-4">
                     <!-- FAQ 1 -->
-                    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-                        <button class="faq-toggle w-full flex items-center justify-between p-6 bg-slate-50 dark:bg-slate-900/50 text-left hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">
-                            <span class="font-bold text-slate-900 dark:text-white">O acesso é imediato?</span>
-                            <svg class="faq-icon w-5 h-5 text-slate-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left">
+                            <span class="text-lg font-semibold text-slate-800 dark:text-slate-100">Como funciona a garantia de 7 dias?</span>
+                            <svg class="faq-icon w-6 h-6 text-slate-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="hidden p-6 bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400">
-                            Sim! Assim que o pagamento é confirmado, você recebe um e-mail com seus dados de acesso e já pode começar a montar seu plano de estudos.
+                        <div class="faq-answer hidden mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>Você pode testar a plataforma por 7 dias. Se por qualquer motivo não gostar, basta enviar um email e nós devolvemos 100% do seu dinheiro, sem perguntas.</p>
                         </div>
                     </div>
-                     <!-- FAQ 2 -->
-                    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-                        <button class="faq-toggle w-full flex items-center justify-between p-6 bg-slate-50 dark:bg-slate-900/50 text-left hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">
-                            <span class="font-bold text-slate-900 dark:text-white">Serve para qualquer concurso?</span>
-                            <svg class="faq-icon w-5 h-5 text-slate-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <!-- FAQ 2 -->
+                    <div class="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left">
+                            <span class="text-lg font-semibold text-slate-800 dark:text-slate-100">A IA serve para qualquer concurso?</span>
+                             <svg class="faq-icon w-6 h-6 text-slate-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="hidden p-6 bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400">
-                            Com certeza. Nossa IA lê qualquer edital em PDF e cria um planejamento personalizado com base no conteúdo programático dele, seja nível médio, superior ou carreiras jurídicas.
+                        <div class="faq-answer hidden mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                             <p>Sim! Nossa IA é treinada para analisar qualquer edital em formato PDF. Seja para área fiscal, policial, tribunais, saúde ou educação, ela consegue criar um plano otimizado para sua necessidade.</p>
                         </div>
                     </div>
-                     <!-- FAQ 3 -->
-                    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-                        <button class="faq-toggle w-full flex items-center justify-between p-6 bg-slate-50 dark:bg-slate-900/50 text-left hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">
-                            <span class="font-bold text-slate-900 dark:text-white">Posso cancelar quando quiser?</span>
-                            <svg class="faq-icon w-5 h-5 text-slate-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <!-- FAQ 3 -->
+                    <div class="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left">
+                            <span class="text-lg font-semibold text-slate-800 dark:text-slate-100">Preciso ter algum material de estudo?</span>
+                             <svg class="faq-icon w-6 h-6 text-slate-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="hidden p-6 bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400">
-                            Sim. Nosso modelo é sem fidelidade. Você pode cancelar sua assinatura mensal a qualquer momento diretamente no painel do usuário, sem burocracia.
-                        </div>
-                    </div>
-                     <!-- FAQ 4 -->
-                    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-                        <button class="faq-toggle w-full flex items-center justify-between p-6 bg-slate-50 dark:bg-slate-900/50 text-left hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">
-                            <span class="font-bold text-slate-900 dark:text-white">Tem garantia?</span>
-                            <svg class="faq-icon w-5 h-5 text-slate-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="hidden p-6 bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400">
-                            Sim, oferecemos 7 dias de garantia incondicional. Se não gostar, devolvemos 100% do seu dinheiro.
+                        <div class="faq-answer hidden mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                             <p>A DeepStudy.AI organiza o SEU estudo. Nós não fornecemos o material (videoaulas, PDFs, etc.). Nossa função é ser o cérebro da sua preparação, mostrando o que, quando e como estudar, usando os materiais que você já possui e confia.</p>
                         </div>
                     </div>
                 </div>
@@ -834,83 +850,36 @@
         </section>
 
         <!-- Final CTA Section -->
-        <section class="py-24 bg-brand-600 relative overflow-hidden">
-             <!-- Decorators -->
-             <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-brand-500 rounded-full opacity-50 blur-3xl"></div>
-             <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-brand-700 rounded-full opacity-50 blur-3xl"></div>
-             
-             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-center">
-                 <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-8 tracking-tight">Pare de perder tempo. Comece a ser aprovado.</h2>
-                 <p class="text-xl text-brand-100 mb-10 max-w-2xl mx-auto">A única coisa entre você e sua nomeação é um método eficiente. Nós temos o método.</p>
-                 <a href="#pricing" class="inline-flex justify-center items-center px-10 py-5 text-lg font-bold rounded-2xl text-brand-600 bg-white hover:bg-slate-50 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                    GARANTIR MINHA VAGA
+        <section class="py-24 bg-slate-50 dark:bg-[#020617]">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">Pronto para ser o próximo aprovado?</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">Junte-se a milhares de concurseiros que estão estudando de forma mais inteligente.</p>
+                <a href="#pricing" class="mt-10 inline-flex justify-center items-center px-10 py-5 text-xl font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-xl shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">
+                    Garantir minha vaga com desconto
                 </a>
-                <p class="mt-6 text-sm text-brand-200 font-medium">Junte-se a mais de 5.000 alunos aprovados.</p>
-             </div>
+            </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-50 dark:bg-[#020617] border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-1 md:col-span-1">
-                    <a href="#" class="flex items-center gap-2 mb-6 group">
-                         <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <span class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">DeepStudy<span class="text-brand-600">.AI</span></span>
-                    </a>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">A revolução no estudo para concursos públicos. Tecnologia de ponta para quem leva a aprovação a sério.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-slate-400 hover:text-brand-600 transition-colors"><span class="sr-only">Instagram</span><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.072 3.252.148 4.771 1.691 4.919 4.919.06 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                        <a href="#" class="text-slate-400 hover:text-brand-600 transition-colors"><span class="sr-only">LinkedIn</span><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>
+    <footer class="bg-white dark:bg-[#0B1120] border-t border-slate-100 dark:border-slate-800/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                 <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
+                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
                     </div>
+                    <span class="text-lg font-bold text-slate-800 dark:text-white">DeepStudy<span class="text-brand-600 dark:text-brand-400">.AI</span></span>
                 </div>
-                
-                <div>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-4">Produto</h3>
-                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
-                        <li><a href="#features" class="hover:text-brand-600 transition-colors">Recursos</a></li>
-                        <li><a href="#pricing" class="hover:text-brand-600 transition-colors">Preços</a></li>
-                        <li><a href="#how-it-works" class="hover:text-brand-600 transition-colors">Como funciona</a></li>
-                        <li><a href="#testimonials" class="hover:text-brand-600 transition-colors">Depoimentos</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-4">Empresa</h3>
-                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
-                        <li><a href="#" class="hover:text-brand-600 transition-colors">Sobre nós</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition-colors">Contato</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition-colors">Carreiras</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-4">Legal</h3>
-                    <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
-                        <li><a href="#" class="hover:text-brand-600 transition-colors">Termos de Uso</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition-colors">Privacidade</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition-colors">Cookies</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-slate-400 text-center md:text-left">© 2024 DeepStudy.AI. Todos os direitos reservados. CNPJ: 00.000.000/0001-00</p>
-                <div class="flex gap-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="h-4 opacity-50 grayscale">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="h-4 opacity-50 grayscale">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_of_Pix_%28Brazil%29.svg" alt="Pix" class="h-4 opacity-50 grayscale">
-                </div>
+                <p class="text-sm text-slate-500 text-center md:text-right">&copy; 2024 DeepStudy.AI. Todos os direitos reservados. Feito para acelerar sua aprovação.</p>
             </div>
         </div>
     </footer>
+
 </body>
 </html>
