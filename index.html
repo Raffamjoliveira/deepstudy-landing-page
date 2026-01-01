@@ -71,10 +71,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <script>
+        (function() {
+            const storageKey = 'theme';
+            const root = document.documentElement;
+            const storedTheme = localStorage.getItem(storageKey);
+            const prefersDark = window.matchMedia
+                ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                : null;
+            const shouldUseDark = storedTheme
+                ? storedTheme === 'dark'
+                : (prefersDark !== null ? prefersDark : true);
+
+            if (shouldUseDark) {
+                root.classList.add('dark');
+            } else {
+                root.classList.remove('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'media',
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
