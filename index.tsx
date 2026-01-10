@@ -12,6 +12,67 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
+    const getCookieValue = (name: string) => {
+        const value = document.cookie
+            .split('; ')
+            .find(row => row.startsWith(`${name}=`));
+        return value ? decodeURIComponent(value.split('=')[1]) : '';
+    };
+
+    const generateEventId = () => {
+        if (window.crypto && 'randomUUID' in window.crypto) {
+            return window.crypto.randomUUID();
+        }
+        return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    };
+
+    const trackMetaPixelEvent = (eventName: string, eventId: string) => {
+        const fbq = (window as any).fbq;
+        if (typeof fbq === 'function') {
+            fbq('track', eventName, {}, { eventID: eventId });
+        }
+    };
+
+    const sendCapiEvent = async (
+        eventName: string,
+        eventId: string,
+        customData: Record<string, string> = {}
+    ) => {
+        const storedUtms = getStoredUtms() ?? {};
+        const fbp = getCookieValue('_fbp');
+        const fbc = getCookieValue('_fbc');
+
+        const userData: Record<string, string> = {};
+        if (fbp) {
+            userData.fbp = fbp;
+        }
+        if (fbc) {
+            userData.fbc = fbc;
+        }
+
+        const payload: Record<string, unknown> = {
+            event_name: eventName,
+            event_time: Math.floor(Date.now() / 1000),
+            event_id: eventId,
+            event_source_url: window.location.href,
+            user_data: userData,
+            custom_data: { ...storedUtms, ...customData },
+            referrer_url: document.referrer || undefined,
+        };
+
+        try {
+            await fetch('/api/meta-capi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+        } catch (error) {
+            console.warn('Failed to send Meta CAPI event', error);
+        }
+    };
+
     // --- Attribution Logic (UTM + Organic) ---
     const UTM_STORAGE_KEY = 'deepstudy_utm_data';
     const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
@@ -90,6 +151,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run attribution logic
     captureAttribution();
     applyUtmsToLinks();
+
+    const pageViewEventId = generateEventId();
+    trackMetaPixelEvent('PageView', pageViewEventId);
+    void sendCapiEvent('PageView', pageViewEventId);
+
+    const registerCheckoutTracking = () => {
+        const checkoutLinks = document.querySelectorAll<HTMLAnchorElement>('a[href*="pay.cakto.com.br"]');
+        checkoutLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const eventId = generateEventId();
+                trackMetaPixelEvent('InitiateCheckout', eventId);
+                void sendCapiEvent('InitiateCheckout', eventId);
+            });
+        });
+    };
+    registerCheckoutTracking();
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
