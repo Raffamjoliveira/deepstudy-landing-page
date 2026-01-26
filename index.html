@@ -38,6 +38,61 @@
     </script>
     <!-- TikTok Pixel Code End -->
 
+    <!-- TikTok Pixel Event Tracking -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.ttq || !ttq.track) return;
+
+      // Add this before event code to all pages where PII data postback is expected and appropriate.
+      ttq.identify({
+        "email": "<hashed_email_address>", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
+        "phone_number": "<hashed_phone_number>", // string. The phone number of the customer if available. It must be hashed with SHA-256 on the client side.
+        "external_id": "<hashed_external_id>" // string. Any unique identifier, such as loyalty membership IDs, user IDs, and external cookie IDs. It must be hashed with SHA-256 on the client side.
+      });
+
+      ttq.track('ViewContent', {
+        "contents": [
+          {
+            "content_type": "product",
+            "content_name": "DeepStudy.AI",
+            "content_category": "assinatura"
+          }
+        ],
+        "value": 0,
+        "currency": "BRL"
+      });
+
+      const checkoutButtons = document.querySelectorAll('a[href="#pricing"]');
+      checkoutButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          ttq.track('ClickButton', {
+            "contents": [
+              {
+                "content_id": "deepstudy-ai",
+                "content_type": "product",
+                "content_name": "DeepStudy.AI"
+              }
+            ],
+            "value": 0,
+            "currency": "BRL"
+          });
+
+          ttq.track('InitiateCheckout', {
+            "contents": [
+              {
+                "content_id": "deepstudy-ai",
+                "content_type": "product",
+                "content_name": "DeepStudy.AI"
+              }
+            ],
+            "value": 0,
+            "currency": "BRL"
+          });
+        });
+      });
+    });
+    </script>
+
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deepstudy.ai/">
