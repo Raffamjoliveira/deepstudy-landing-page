@@ -87,9 +87,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const CHECKOUT_STORAGE_KEY = 'deepstudy_checkout_data';
+
+    const initCheckoutTracking = () => {
+        const checkoutLinks = document.querySelectorAll<HTMLAnchorElement>('a[href*="pay.cakto.com.br"]');
+
+        checkoutLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const contentId = link.dataset.contentId ?? '';
+                const contentName = link.dataset.contentName ?? '';
+                const contentValue = link.dataset.contentValue ?? '';
+                const contentCurrency = link.dataset.contentCurrency ?? 'BRL';
+                const numericValue = Number(contentValue);
+
+                const checkoutData = {
+                    content_id: contentId,
+                    content_name: contentName,
+                    value: numericValue,
+                    currency: contentCurrency
+                };
+
+                localStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutData));
+
+                try {
+                    const url = new URL(link.href);
+                    if (contentId) {
+                        url.searchParams.set('content_id', contentId);
+                    }
+                    if (contentValue) {
+                        url.searchParams.set('value', contentValue);
+                    }
+                    if (contentCurrency) {
+                        url.searchParams.set('currency', contentCurrency);
+                    }
+                    link.href = url.toString();
+                } catch (e) {
+                    console.warn('Failed to append checkout metadata:', link.href);
+                }
+
+                const ttq = (window as { ttq?: { track?: (event: string, payload: Record<string, unknown>) => void } }).ttq;
+                if (ttq && typeof ttq.track === 'function') {
+                    const payload: Record<string, unknown> = {
+                        contents: [
+                            {
+                                content_id: contentId,
+                                content_type: 'product',
+                                content_name: contentName
+                            }
+                        ],
+                        currency: contentCurrency
+                    };
+
+                    if (Number.isFinite(numericValue)) {
+                        payload.value = numericValue;
+                    }
+
+                    ttq.track('InitiateCheckout', payload);
+                }
+            });
+        });
+    };
+
     // Run attribution logic
     captureAttribution();
     applyUtmsToLinks();
+    initCheckoutTracking();
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
