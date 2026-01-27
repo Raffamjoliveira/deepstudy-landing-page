@@ -24,6 +24,72 @@
     </script>
     <!-- End Meta Pixel Code -->
 
+    <!-- TikTok Pixel Events -->
+    <script>
+      window.ttq = window.ttq || [];
+      window.ttq.identify = window.ttq.identify || function() {
+        window.ttq.push(['identify'].concat([].slice.call(arguments)));
+      };
+      window.ttq.track = window.ttq.track || function() {
+        window.ttq.push(['track'].concat([].slice.call(arguments)));
+      };
+
+      ttq.identify({
+        email: "<hashed_email_address>",
+        phone_number: "<hashed_phone_number>",
+        external_id: "<hashed_external_id>"
+      });
+
+      ttq.track('ViewContent', {
+        contents: [
+          {
+            content_type: "<content_type>",
+            content_name: "<content_name>",
+            content_category: "<content_category>"
+          }
+        ],
+        value: "<content_value>",
+        currency: "<content_currency>"
+      });
+
+      ttq.track('ClickButton', {
+        contents: [
+          {
+            content_id: "<content_identifier>",
+            content_type: "<content_type>",
+            content_name: "<content_name>"
+          }
+        ],
+        value: "<content_value>",
+        currency: "<content_currency>"
+      });
+
+      ttq.track('InitiateCheckout', {
+        contents: [
+          {
+            content_id: "<content_identifier>",
+            content_type: "<content_type>",
+            content_name: "<content_name>"
+          }
+        ],
+        value: "<content_value>",
+        currency: "<content_currency>"
+      });
+
+      ttq.track('Purchase', {
+        contents: [
+          {
+            content_id: "<content_identifier>",
+            content_type: "<content_type>",
+            content_name: "<content_name>"
+          }
+        ],
+        value: "<content_value>",
+        currency: "<content_currency>"
+      });
+    </script>
+    <!-- End TikTok Pixel Events -->
+
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deepstudy.ai/">
