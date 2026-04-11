@@ -1117,20 +1117,44 @@
     <footer class="bg-white dark:bg-[#0B1120] border-t border-slate-100 dark:border-slate-800/50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-10">
             <div class="flex flex-col items-center gap-4 text-center">
-                <nav aria-label="Links legais" class="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold">
-                    <a href="/termos" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Termos de Uso</a>
-                    <span class="text-slate-300 dark:text-slate-600" aria-hidden="true">|</span>
-                    <a href="/privacidade" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Política de Privacidade</a>
-                    <span class="text-slate-300 dark:text-slate-600" aria-hidden="true">|</span>
+                <nav aria-label="Links institucionais" class="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold">
                     <a href="/empresa" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Empresa</a>
+                    <span class="text-slate-300 dark:text-slate-600" aria-hidden="true">|</span>
+                    <a href="/privacidade" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Privacidade</a>
+                    <span class="text-slate-300 dark:text-slate-600" aria-hidden="true">|</span>
+                    <a href="/termos" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Termos</a>
                 </nav>
-                <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-                    DeepStudy © 2026<br>
-                    Operado por Bianca de Jesus Marques de Oliveira – CNPJ 41.166.397/0001-73
-                </p>
+                <label class="text-xs text-slate-500 dark:text-slate-400">Li e concordo com os <a href="/termos" class="underline">Termos de Uso</a> e <a href="/privacidade" class="underline">Política de Privacidade</a></label>
+                <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">DeepStudy © 2026<br>Operado por pessoa jurídica inscrita no CNPJ nº 41.166.397/0001-73</p>
             </div>
         </div>
     </footer>
+
+    <div class="cookie-banner fixed bottom-4 left-4 right-4 z-50 rounded-xl border border-slate-700 bg-slate-900/95 p-4 text-sm text-slate-200 shadow-2xl">
+        <div class="mx-auto flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p>Este site utiliza cookies para melhorar a experiência e exibir anúncios personalizados.</p>
+            <button type="button" data-accept-cookies class="rounded-lg bg-brand-600 px-4 py-2 font-semibold text-white hover:bg-brand-700">Aceitar</button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const key = 'deepstudy_cookie_consent';
+            const banner = document.querySelector('.cookie-banner');
+            const acceptButton = document.querySelector('[data-accept-cookies]');
+            if (!banner || !acceptButton) return;
+
+            if (localStorage.getItem(key) === 'accepted') {
+                banner.style.display = 'none';
+                return;
+            }
+
+            acceptButton.addEventListener('click', function () {
+                localStorage.setItem(key, 'accepted');
+                banner.style.display = 'none';
+            });
+        })();
+    </script>
 
 </body>
 </html>
