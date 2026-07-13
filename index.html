@@ -31,6 +31,22 @@
     window.__deepstudyMetaPixelInitialized = true;
     fbq('track', 'PageView');
     window.__deepstudyMetaPageViewTracked = true;
+    setTimeout(function () {
+      var hasPageViewRequest = false;
+      if (window.performance && typeof window.performance.getEntriesByType === 'function') {
+        hasPageViewRequest = window.performance
+          .getEntriesByType('resource')
+          .some(function (entry) {
+            return entry.name.indexOf('facebook.com/tr') !== -1 && entry.name.indexOf('ev=PageView') !== -1;
+          });
+      }
+      if (!hasPageViewRequest) {
+        var fallbackPixel = new Image(1, 1);
+        fallbackPixel.style.display = 'none';
+        fallbackPixel.src = 'https://www.facebook.com/tr?id=1083649257004430&ev=PageView&noscript=0';
+        document.documentElement.appendChild(fallbackPixel);
+      }
+    }, 1500);
     </script>
     <!-- End Meta Pixel Code -->
 
