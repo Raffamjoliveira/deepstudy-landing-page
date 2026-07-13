@@ -1,8 +1,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const META_PIXEL_ID = '1083649257004430';
+    const CHECKOUT_TRACKING_DELAY_MS = 700;
 
     type MetaPixelEventPayload = Record<string, string | number | boolean | undefined>;
+    type MetaPixelTrackOptions = { eventID?: string };
 
     const loadMetaPixelBase = () => {
         const win = window as typeof window & {
@@ -53,14 +55,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const trackMetaEvent = (eventName: string, payload?: MetaPixelEventPayload) => {
+    const trackMetaEvent = (eventName: string, payload?: MetaPixelEventPayload, options?: MetaPixelTrackOptions) => {
         const win = window as typeof window & { fbq?: (...args: any[]) => void };
 
         if (!win.fbq) {
             loadMetaPixelBase();
         }
 
+        if (options) {
+            win.fbq?.('track', eventName, payload ?? {}, options);
+            return;
+        }
+
         win.fbq?.('track', eventName, payload ?? {});
+    };
+
+    const createEventId = (eventName: string) => {
+        if (window.crypto?.randomUUID) {
+            return `${eventName}.${window.crypto.randomUUID()}`;
+        }
+
+        return `${eventName}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+    };
+
+    const toMetaPixelQuery = (payload: MetaPixelEventPayload = {}) => {
+        const params = new URLSearchParams();
+
+        Object.entries(payload).forEach(([key, value]) => {
+            if (value === undefined) return;
+            params.set(`cd[${key}]`, String(value));
+        });
+
+        return params.toString();
+    };
+
+    const sendMetaPixelFallbackBeacon = (
+        eventName: string,
+        eventId: string,
+        payload?: MetaPixelEventPayload
+    ) => {
+        const fallbackPixel = new Image(1, 1);
+        const customData = toMetaPixelQuery(payload);
+        const query = new URLSearchParams({
+            id: META_PIXEL_ID,
+            ev: eventName,
+            noscript: '0',
+            eid: eventId,
+            dl: window.location.href,
+            rl: document.referrer,
+        });
+
+        fallbackPixel.style.display = 'none';
+        fallbackPixel.src = `https://www.facebook.com/tr?${query.toString()}${customData ? `&${customData}` : ''}`;
+        document.documentElement.appendChild(fallbackPixel);
     };
 
     loadMetaPixelBase();
@@ -160,30 +207,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const checkoutLinks = document.querySelectorAll<HTMLAnchorElement>('a[href*="pay.cakto.com.br"]');
 
         checkoutLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                trackMetaEvent('InitiateCheckout', {
+            link.addEventListener('click', event => {
+                const payload = {
                     content_name: link.dataset.planName || link.textContent?.trim() || 'DeepStudy checkout',
                     content_ids: link.dataset.planId,
                     content_type: 'product',
                     currency: link.dataset.currency || 'BRL',
                     value: link.dataset.value ? Number(link.dataset.value) : undefined,
-                });
+                };
+                const eventId = createEventId('InitiateCheckout');
+
+                trackMetaEvent('InitiateCheckout', payload, { eventID: eventId });
+                window.sessionStorage.setItem('deepstudy_pending_checkout_event_id', eventId);
+
+                const isPrimaryClick = event.button === 0;
+                const opensInCurrentTab = !link.target || link.target === '_self';
+                const hasModifierKey = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+
+                if (!isPrimaryClick || !opensInCurrentTab || hasModifierKey) {
+                    sendMetaPixelFallbackBeacon('InitiateCheckout', eventId, payload);
+                    return;
+                }
+
+                event.preventDefault();
+                sendMetaPixelFallbackBeacon('InitiateCheckout', eventId, payload);
+
+                window.setTimeout(() => {
+                    window.location.href = link.href;
+                }, CHECKOUT_TRACKING_DELAY_MS);
             });
         });
     };
 
     const initMetaPixelPurchaseTracking = () => {
         const urlParams = new URLSearchParams(window.location.search);
-        const shouldTrackPurchase = urlParams.get('meta_event') === 'Purchase' || urlParams.get('purchase') === 'success';
+        const paymentStatus = urlParams.get('status') || urlParams.get('payment_status');
+        const shouldTrackPurchase =
+            urlParams.get('meta_event') === 'Purchase'
+            || urlParams.get('purchase') === 'success'
+            || paymentStatus === 'approved'
+            || paymentStatus === 'paid';
 
         if (!shouldTrackPurchase) return;
 
-        trackMetaEvent('Purchase', {
+        const eventId = createEventId('Purchase');
+        const payload = {
             content_name: urlParams.get('plan') || 'DeepStudy assinatura',
             content_type: 'product',
             currency: urlParams.get('currency') || 'BRL',
             value: urlParams.get('value') ? Number(urlParams.get('value')) : undefined,
-        });
+        };
+
+        trackMetaEvent('Purchase', {
+            ...payload,
+            order_id: urlParams.get('order_id') || urlParams.get('transaction_id') || undefined,
+        }, { eventID: eventId });
+        sendMetaPixelFallbackBeacon('Purchase', eventId, payload);
     };
 
     initMetaPixelCheckoutTracking();
