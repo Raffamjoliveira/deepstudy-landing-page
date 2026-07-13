@@ -28,7 +28,25 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1083649257004430');
+    window.__deepstudyMetaPixelInitialized = true;
     fbq('track', 'PageView');
+    window.__deepstudyMetaPageViewTracked = true;
+    setTimeout(function () {
+      var hasPageViewRequest = false;
+      if (window.performance && typeof window.performance.getEntriesByType === 'function') {
+        hasPageViewRequest = window.performance
+          .getEntriesByType('resource')
+          .some(function (entry) {
+            return entry.name.indexOf('facebook.com/tr') !== -1 && entry.name.indexOf('ev=PageView') !== -1;
+          });
+      }
+      if (!hasPageViewRequest) {
+        var fallbackPixel = new Image(1, 1);
+        fallbackPixel.style.display = 'none';
+        fallbackPixel.src = 'https://www.facebook.com/tr?id=1083649257004430&ev=PageView&noscript=0';
+        document.documentElement.appendChild(fallbackPixel);
+      }
+    }, 1500);
     </script>
     <!-- End Meta Pixel Code -->
 
@@ -775,7 +793,7 @@
                                 <span>10 Mini-simulados / dia</span>
                             </li>
                         </ul>
-                        <a href="https://pay.cakto.com.br/32vromm_654563" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand-700 bg-white hover:bg-brand-50 transition-all shadow-lg transform hover:-translate-y-1">Quero ser Aprovado</a>
+                        <a href="https://pay.cakto.com.br/32vromm_654563" data-plan-id="32vromm_654563" data-plan-name="Plano Reta Final - 30 Dias" data-currency="BRL" data-value="79.90" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand-700 bg-white hover:bg-brand-50 transition-all shadow-lg transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
                     
                     <!-- Trimestral -->
@@ -830,7 +848,7 @@
                                 <span>20 Mini-simulados / dia</span>
                             </li>
                         </ul>
-                        <a href="https://pay.cakto.com.br/3epkcd2_658166" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
+                        <a href="https://pay.cakto.com.br/3epkcd2_658166" data-plan-id="3epkcd2_658166" data-plan-name="Plano 90 dias - Edital aberto" data-currency="BRL" data-value="119.00" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
 
                     <!-- Anual -->
@@ -885,7 +903,7 @@
                                 <span>Gere Mini-simulados -Ilimitado/ dia</span>
                             </li>
                         </ul>
-                        <a href="https://pay.cakto.com.br/cdf3frg_656564" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand-700 bg-white hover:bg-brand-50 transition-all shadow-lg transform hover:-translate-y-1">Quero ser Aprovado</a>
+                        <a href="https://pay.cakto.com.br/cdf3frg_656564" data-plan-id="cdf3frg_656564" data-plan-name="Concurseiro de Elite - 12 meses" data-currency="BRL" data-value="197.00" class="mt-8 block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand-700 bg-white hover:bg-brand-50 transition-all shadow-lg transform hover:-translate-y-1">Quero ser Aprovado</a>
                     </div>
                 </div>
             </div>
