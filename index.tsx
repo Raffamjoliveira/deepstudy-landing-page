@@ -1,5 +1,70 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+    const META_PIXEL_ID = '1083649257004430';
+
+    type MetaPixelEventPayload = Record<string, string | number | boolean | undefined>;
+
+    const loadMetaPixelBase = () => {
+        const win = window as typeof window & {
+            fbq?: (...args: any[]) => void;
+            _fbq?: (...args: any[]) => void;
+            __deepstudyMetaPixelInitialized?: boolean;
+            __deepstudyMetaPageViewTracked?: boolean;
+        };
+
+        if (!win.fbq) {
+            const fbq = function(this: unknown, ...args: any[]) {
+                if (fbq.callMethod) {
+                    fbq.callMethod.apply(fbq, args);
+                } else {
+                    fbq.queue.push(args);
+                }
+            } as ((...args: any[]) => void) & {
+                callMethod?: (...args: any[]) => void;
+                queue: any[];
+                push: (...args: any[]) => void;
+                loaded: boolean;
+                version: string;
+            };
+
+            win.fbq = fbq;
+            if (!win._fbq) win._fbq = fbq;
+
+            fbq.push = fbq;
+            fbq.loaded = true;
+            fbq.version = '2.0';
+            fbq.queue = [];
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+            const firstScript = document.getElementsByTagName('script')[0];
+            firstScript.parentNode?.insertBefore(script, firstScript);
+        }
+
+        if (!win.__deepstudyMetaPixelInitialized) {
+            win.fbq('init', META_PIXEL_ID);
+            win.__deepstudyMetaPixelInitialized = true;
+        }
+
+        if (!win.__deepstudyMetaPageViewTracked) {
+            win.fbq('track', 'PageView');
+            win.__deepstudyMetaPageViewTracked = true;
+        }
+    };
+
+    const trackMetaEvent = (eventName: string, payload?: MetaPixelEventPayload) => {
+        const win = window as typeof window & { fbq?: (...args: any[]) => void };
+
+        if (!win.fbq) {
+            loadMetaPixelBase();
+        }
+
+        win.fbq?.('track', eventName, payload ?? {});
+    };
+
+    loadMetaPixelBase();
+
     const throttle = (func: (...args: any[]) => void, limit: number) => {
         let inThrottle: boolean;
         return function(this: any, ...args: any[]) {
@@ -90,6 +155,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run attribution logic
     captureAttribution();
     applyUtmsToLinks();
+
+    const initMetaPixelCheckoutTracking = () => {
+        const checkoutLinks = document.querySelectorAll<HTMLAnchorElement>('a[href*="pay.cakto.com.br"]');
+
+        checkoutLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                trackMetaEvent('InitiateCheckout', {
+                    content_name: link.dataset.planName || link.textContent?.trim() || 'DeepStudy checkout',
+                    content_ids: link.dataset.planId,
+                    content_type: 'product',
+                    currency: link.dataset.currency || 'BRL',
+                    value: link.dataset.value ? Number(link.dataset.value) : undefined,
+                });
+            });
+        });
+    };
+
+    const initMetaPixelPurchaseTracking = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const shouldTrackPurchase = urlParams.get('meta_event') === 'Purchase' || urlParams.get('purchase') === 'success';
+
+        if (!shouldTrackPurchase) return;
+
+        trackMetaEvent('Purchase', {
+            content_name: urlParams.get('plan') || 'DeepStudy assinatura',
+            content_type: 'product',
+            currency: urlParams.get('currency') || 'BRL',
+            value: urlParams.get('value') ? Number(urlParams.get('value')) : undefined,
+        });
+    };
+
+    initMetaPixelCheckoutTracking();
+    initMetaPixelPurchaseTracking();
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
