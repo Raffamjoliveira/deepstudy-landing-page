@@ -1,5 +1,104 @@
-
 document.addEventListener('DOMContentLoaded', () => {
+    const META_PIXEL_ID = '1083649257004430';
+
+    type FbqFunction = ((...args: unknown[]) => void) & {
+        callMethod?: (...args: unknown[]) => void;
+        queue?: unknown[];
+        push?: FbqFunction;
+        loaded?: boolean;
+        version?: string;
+    };
+
+    type MetaWindow = Window & typeof globalThis & {
+        fbq?: FbqFunction;
+        _fbq?: FbqFunction;
+        __META_PIXEL_ID__?: string;
+        __META_PAGE_VIEW_EVENT_ID__?: string;
+        __META_PAGE_VIEW_TRACK_CALLED__?: boolean;
+        __META_PAGE_VIEW_TS_FALLBACK_SENT__?: boolean;
+        __META_PAGE_VIEW_RESOURCE_FALLBACK_SENT__?: boolean;
+    };
+
+    const metaWindow = window as MetaWindow;
+
+    const createEventId = (eventName: string) => `${eventName.toLowerCase()}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+    const appendDefinedParams = (url: URL, params: Record<string, string | number | undefined>) => {
+        Object.entries(params).forEach(([key, value]) => {
+            if (value !== undefined && value !== '') {
+                url.searchParams.set(key, String(value));
+            }
+        });
+    };
+
+    const sendMetaBeacon = (eventName: string, eventId: string, payload: Record<string, string | number | undefined> = {}) => {
+        const url = new URL('https://www.facebook.com/tr');
+        appendDefinedParams(url, {
+            id: META_PIXEL_ID,
+            ev: eventName,
+            noscript: 0,
+            eventID: eventId,
+            dl: window.location.href,
+            rl: document.referrer || undefined,
+            if: 'false',
+            ts: Date.now(),
+            ...payload
+        });
+
+        const img = new Image(1, 1);
+        img.style.display = 'none';
+        img.src = url.toString();
+    };
+
+    const ensureMetaPixel = () => {
+        if (!metaWindow.fbq) {
+            const fbq = function(...args: unknown[]) {
+                if (fbq.callMethod) {
+                    fbq.callMethod(...args);
+                } else {
+                    fbq.queue?.push(args);
+                }
+            } as FbqFunction;
+
+            fbq.queue = [];
+            fbq.push = fbq;
+            fbq.loaded = true;
+            fbq.version = '2.0';
+            metaWindow.fbq = fbq;
+            metaWindow._fbq = metaWindow._fbq || fbq;
+        }
+
+        if (!document.querySelector<HTMLScriptElement>('script[src="https://connect.facebook.net/en_US/fbevents.js"]')) {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+            const firstScript = document.getElementsByTagName('script')[0];
+            firstScript.parentNode?.insertBefore(script, firstScript);
+        }
+
+        return metaWindow.fbq;
+    };
+
+    const initMetaPixelFallback = () => {
+        if (metaWindow.__META_PAGE_VIEW_TRACK_CALLED__) return;
+
+        const fbq = ensureMetaPixel();
+        const eventId = metaWindow.__META_PAGE_VIEW_EVENT_ID__ || createEventId('PageView');
+        metaWindow.__META_PIXEL_ID__ = META_PIXEL_ID;
+        metaWindow.__META_PAGE_VIEW_EVENT_ID__ = eventId;
+
+        fbq?.('init', META_PIXEL_ID);
+        fbq?.('track', 'PageView', {}, { eventID: eventId });
+        metaWindow.__META_PAGE_VIEW_TRACK_CALLED__ = true;
+        metaWindow.__META_PAGE_VIEW_TS_FALLBACK_SENT__ = true;
+    };
+
+    const trackMetaEvent = (eventName: string, eventId: string, payload: Record<string, unknown> = {}) => {
+        const fbq = ensureMetaPixel();
+        fbq?.('track', eventName, payload, { eventID: eventId });
+    };
+
+    initMetaPixelFallback();
     const throttle = (func: (...args: any[]) => void, limit: number) => {
         let inThrottle: boolean;
         return function(this: any, ...args: any[]) {
@@ -89,62 +188,156 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const CHECKOUT_STORAGE_KEY = 'deepstudy_checkout_data';
 
+    const buildCheckoutPayload = (link: HTMLAnchorElement) => {
+        const contentId = link.dataset.contentId ?? '';
+        const contentName = link.dataset.contentName ?? '';
+        const contentValue = link.dataset.contentValue ?? '';
+        const contentCurrency = link.dataset.contentCurrency ?? 'BRL';
+        const numericValue = Number(contentValue);
+        const payload: Record<string, unknown> = {
+            content_ids: contentId ? [contentId] : [],
+            content_name: contentName,
+            content_type: 'product',
+            contents: [
+                {
+                    id: contentId,
+                    quantity: 1,
+                    item_price: Number.isFinite(numericValue) ? numericValue : undefined
+                }
+            ],
+            currency: contentCurrency
+        };
+
+        if (Number.isFinite(numericValue)) {
+            payload.value = numericValue;
+        }
+
+        return { contentId, contentName, contentValue, contentCurrency, numericValue, payload };
+    };
+
+    const persistAndApplyCheckoutMetadata = (link: HTMLAnchorElement) => {
+        const checkout = buildCheckoutPayload(link);
+        const checkoutData = {
+            content_id: checkout.contentId,
+            content_name: checkout.contentName,
+            value: checkout.numericValue,
+            currency: checkout.contentCurrency
+        };
+
+        localStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutData));
+
+        try {
+            const url = new URL(link.href);
+            appendDefinedParams(url, {
+                content_id: checkout.contentId,
+                value: checkout.contentValue,
+                currency: checkout.contentCurrency
+            });
+            link.href = url.toString();
+        } catch (e) {
+            console.warn('Failed to append checkout metadata:', link.href);
+        }
+
+        return checkout;
+    };
+
     const initCheckoutTracking = () => {
         const checkoutLinks = document.querySelectorAll<HTMLAnchorElement>('a[href*="pay.cakto.com.br"]');
 
         checkoutLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                const contentId = link.dataset.contentId ?? '';
-                const contentName = link.dataset.contentName ?? '';
-                const contentValue = link.dataset.contentValue ?? '';
-                const contentCurrency = link.dataset.contentCurrency ?? 'BRL';
-                const numericValue = Number(contentValue);
-
-                const checkoutData = {
-                    content_id: contentId,
-                    content_name: contentName,
-                    value: numericValue,
-                    currency: contentCurrency
+            link.addEventListener('click', (event) => {
+                const checkout = persistAndApplyCheckoutMetadata(link);
+                const eventId = createEventId('InitiateCheckout');
+                const beaconPayload = {
+                    cd: checkout.contentId,
+                    cn: checkout.contentName,
+                    cu: checkout.contentCurrency,
+                    value: Number.isFinite(checkout.numericValue) ? checkout.numericValue : undefined
                 };
 
-                localStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutData));
-
-                try {
-                    const url = new URL(link.href);
-                    if (contentId) {
-                        url.searchParams.set('content_id', contentId);
-                    }
-                    if (contentValue) {
-                        url.searchParams.set('value', contentValue);
-                    }
-                    if (contentCurrency) {
-                        url.searchParams.set('currency', contentCurrency);
-                    }
-                    link.href = url.toString();
-                } catch (e) {
-                    console.warn('Failed to append checkout metadata:', link.href);
-                }
+                trackMetaEvent('InitiateCheckout', eventId, checkout.payload);
+                sendMetaBeacon('InitiateCheckout', eventId, beaconPayload);
 
                 const ttq = (window as { ttq?: { track?: (event: string, payload: Record<string, unknown>) => void } }).ttq;
                 if (ttq && typeof ttq.track === 'function') {
-                    const payload: Record<string, unknown> = {
+                    const tiktokPayload: Record<string, unknown> = {
                         contents: [
                             {
-                                content_id: contentId,
+                                content_id: checkout.contentId,
                                 content_type: 'product',
-                                content_name: contentName
+                                content_name: checkout.contentName
                             }
                         ],
-                        currency: contentCurrency
+                        currency: checkout.contentCurrency
                     };
 
-                    if (Number.isFinite(numericValue)) {
-                        payload.value = numericValue;
+                    if (Number.isFinite(checkout.numericValue)) {
+                        tiktokPayload.value = checkout.numericValue;
                     }
 
-                    ttq.track('InitiateCheckout', payload);
+                    ttq.track('InitiateCheckout', tiktokPayload);
                 }
+
+                const isModifiedNavigation = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0 || link.target === '_blank';
+                if (isModifiedNavigation) return;
+
+                event.preventDefault();
+                window.setTimeout(() => {
+                    window.location.href = link.href;
+                }, 700);
             });
+        });
+    };
+
+    const getStoredCheckoutData = () => {
+        try {
+            const stored = localStorage.getItem(CHECKOUT_STORAGE_KEY);
+            return stored ? JSON.parse(stored) as Record<string, string | number | undefined> : {};
+        } catch (error) {
+            return {};
+        }
+    };
+
+    const initPurchaseTracking = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const metaEvent = urlParams.get('meta_event')?.toLowerCase();
+        const purchase = urlParams.get('purchase')?.toLowerCase();
+        const status = urlParams.get('status')?.toLowerCase();
+        const paymentStatus = urlParams.get('payment_status')?.toLowerCase();
+        const isPurchaseSuccess = metaEvent === 'purchase' || purchase === 'success' || status === 'approved' || status === 'paid' || paymentStatus === 'approved' || paymentStatus === 'paid';
+
+        if (!isPurchaseSuccess) return;
+
+        const checkoutData = getStoredCheckoutData();
+        const value = Number(urlParams.get('value') ?? checkoutData.value);
+        const currency = urlParams.get('currency') ?? String(checkoutData.currency ?? 'BRL');
+        const contentId = urlParams.get('content_id') ?? String(checkoutData.content_id ?? '');
+        const contentName = String(checkoutData.content_name ?? contentId);
+        const eventId = createEventId('Purchase');
+        const payload: Record<string, unknown> = {
+            content_ids: contentId ? [contentId] : [],
+            content_name: contentName,
+            content_type: 'product',
+            contents: [
+                {
+                    id: contentId,
+                    quantity: 1,
+                    item_price: Number.isFinite(value) ? value : undefined
+                }
+            ],
+            currency
+        };
+
+        if (Number.isFinite(value)) {
+            payload.value = value;
+        }
+
+        trackMetaEvent('Purchase', eventId, payload);
+        sendMetaBeacon('Purchase', eventId, {
+            cd: contentId,
+            cn: contentName,
+            cu: currency,
+            value: Number.isFinite(value) ? value : undefined
         });
     };
 
@@ -152,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     captureAttribution();
     applyUtmsToLinks();
     initCheckoutTracking();
+    initPurchaseTracking();
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
