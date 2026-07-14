@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacidade | DeepStudy</title>
+  <meta name="robots" content="index, follow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#020617] text-slate-200 font-sans antialiased">
+  <main class="min-h-screen py-20">
+    <section class="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 space-y-4 leading-relaxed">
+      <h1 class="text-3xl font-bold text-white">Política de Privacidade</h1>
+
+      <p>
+        Esta plataforma é operada por pessoa jurídica inscrita no CNPJ nº 41.166.397/0001-73.
+      </p>
+
+      <h2 class="text-xl font-semibold text-white mt-6">1. Dados Coletados</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Nome, e-mail e telefone</li>
+        <li>Dados de uso da plataforma</li>
+        <li>Endereço IP e dispositivo</li>
+        <li>Cookies e pixels de rastreamento</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold text-white mt-6">2. Finalidade</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Prestação de serviços educacionais</li>
+        <li>Personalização da experiência</li>
+        <li>Suporte ao usuário</li>
+        <li>Marketing e análise de desempenho</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold text-white mt-6">3. Base Legal</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Execução de contrato</li>
+        <li>Consentimento</li>
+        <li>Legítimo interesse</li>
+        <li>Obrigação legal</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold text-white mt-6">4. Compartilhamento</h2>
+      <p>
+        Os dados podem ser compartilhados com plataformas de pagamento, ferramentas de análise e infraestrutura tecnológica.
+      </p>
+
+      <h2 class="text-xl font-semibold text-white mt-6">5. Inteligência Artificial</h2>
+      <p>
+        A plataforma utiliza inteligência artificial para processar dados inseridos pelo usuário e gerar conteúdo personalizado.
+      </p>
+
+      <h2 class="text-xl font-semibold text-white mt-6">6. Cookies</h2>
+      <p>
+        Utilizamos cookies para melhorar a experiência e para fins de marketing.
+      </p>
+
+      <h2 class="text-xl font-semibold text-white mt-6">7. Direitos do Usuário</h2>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Acesso aos dados</li>
+        <li>Correção</li>
+        <li>Exclusão</li>
+        <li>Revogação de consentimento</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold text-white mt-6">8. Contato</h2>
+      <p>
+        📧 suporte@deepstudy.com.br
+      </p>
+    </section>
+  </main>
+
+  <footer class="bg-white dark:bg-[#0B1120] border-t border-slate-100 dark:border-slate-800/50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-10">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <nav aria-label="Links institucionais" class="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold">
+          <a href="/empresa" class="text-slate-600 dark:text-slate-300">Empresa</a> |
+          <a href="/privacidade" class="text-slate-600 dark:text-slate-300">Privacidade</a> |
+          <a href="/termos" class="text-slate-600 dark:text-slate-300">Termos</a>
+        </nav>
+        <label class="text-xs text-slate-500 dark:text-slate-400">Li e concordo com os <a href="/termos" class="underline">Termos de Uso</a> e <a href="/privacidade" class="underline">Política de Privacidade</a></label>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner fixed bottom-4 left-4 right-4 z-50 rounded-xl border border-slate-700 bg-slate-900/95 p-4 text-sm text-slate-200 shadow-2xl">
+    <div class="mx-auto flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <p>Este site utiliza cookies para melhorar a experiência e exibir anúncios personalizados.</p>
+      <button type="button" data-accept-cookies class="rounded-lg bg-brand-600 px-4 py-2 font-semibold text-white">Aceitar</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const key = 'deepstudy_cookie_consent';
+      const banner = document.querySelector('.cookie-banner');
+      const acceptButton = document.querySelector('[data-accept-cookies]');
+      if (!banner || !acceptButton) return;
+
+      if (localStorage.getItem(key) === 'accepted') {
+        banner.style.display = 'none';
+        return;
+      }
+
+      acceptButton.addEventListener('click', function () {
+        localStorage.setItem(key, 'accepted');
+        banner.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>
