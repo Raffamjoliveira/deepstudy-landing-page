@@ -27,7 +27,17 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1083649257004430');
+    var advancedMatching = {};
+    var urlParams = new URLSearchParams(window.location.search);
+    var emailParam = urlParams.get('em') || urlParams.get('email');
+    var phoneParam = urlParams.get('ph') || urlParams.get('phone');
+    if (emailParam) {
+        advancedMatching.em = emailParam;
+    }
+    if (phoneParam) {
+        advancedMatching.ph = phoneParam;
+    }
+    fbq('init', '1083649257004430', advancedMatching);
     fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
