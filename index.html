@@ -200,7 +200,7 @@
     <style>
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 100px;
+        scroll-padding-top: 128px;
       }
       .scrollbar-hide::-webkit-scrollbar {
           display: none;
@@ -230,6 +230,11 @@
 
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 header-glass border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 shadow-sm">
+        <div class="bg-red-600 px-4 py-2 text-center text-sm font-bold text-white shadow-md">
+            <span>Oferta por tempo limitado</span>
+            <span class="mx-2" aria-hidden="true">•</span>
+            <span id="offer-countdown" class="font-mono tabular-nums" role="timer" aria-live="polite">15:00</span>
+        </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 cursor-pointer transition-transform hover:scale-105">
@@ -285,7 +290,7 @@
     <main id="app-content" class="min-h-screen overflow-hidden">
         
         <!-- Hero Section -->
-        <section id="hero" class="pt-28 sm:pt-36 pb-16 lg:pb-24 relative overflow-hidden">
+        <section id="hero" class="pt-36 sm:pt-44 pb-16 lg:pb-24 relative overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center relative z-10">
                 <div class="flex justify-center mb-6">
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 shadow-sm hover:shadow-md transition-shadow cursor-default backdrop-blur-sm">
@@ -597,50 +602,6 @@
         </section>
 
 
-
-        <!-- Why Common Simulations Fail -->
-        <section class="py-24 bg-slate-50 dark:bg-[#020617]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-                <div class="p-8 md:p-10 rounded-[2rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Por que simulados comuns não funcionam</h2>
-                    <p class="mt-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                        A maioria dos simulados comuns funciona como quiz de conteúdo. Mas quiz ≠ simulado real.
-                    </p>
-                    <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Prova de concurso cobra nível de interpretação, armadilhas recorrentes, competências no lugar de conteúdos. Se seu simulado não tiver isso, você treina matéria, mas não treina para prova.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Choose Your Path Section -->
-        <section class="py-24 bg-slate-50 dark:bg-[#020617]">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Agora você precisa escolher um caminho</h2>
-                </div>
-                <div class="grid gap-8 md:grid-cols-2">
-                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 border border-red-200 dark:border-red-900/50">
-                        <h3 class="text-xl font-bold text-red-600 dark:text-red-400 mb-4">Continuar sem o padrão da banca</h3>
-                        <ul class="space-y-3 text-slate-600 dark:text-slate-300">
-                            <li>a) estuda com PDFs aleatórios</li>
-                            <li>b) Plano de Estudos linear</li>
-                            <li>c) Estuda sem ter certeza se vai cair na prova</li>
-                            <li>d) Não aprende o DNA da banca</li>
-                        </ul>
-                    </div>
-                    <div class="p-8 rounded-[2rem] bg-white dark:bg-slate-900 border border-brand-200 dark:border-brand-700">
-                        <h3 class="text-xl font-bold text-brand-700 dark:text-brand-400 mb-4">Treinar com DeepStudy</h3>
-                        <ul class="space-y-3 text-slate-700 dark:text-slate-200">
-                            <li>a) Estuda com prioridade certa os assuntos recorrentes</li>
-                            <li>b) Segue Plano de estudos focado em assuntos prioritários</li>
-                            <li>c) Aprende o DNA da banca por assunto do edital</li>
-                            <li>d) Se prepara para a prova Real</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Pricing Anchor (Value Stacking) Section -->
         <section class="py-24 bg-[#0B1120] dark:bg-[#020617] relative overflow-hidden">
