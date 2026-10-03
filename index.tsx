@@ -153,6 +153,39 @@ document.addEventListener('DOMContentLoaded', () => {
     applyUtmsToLinks();
     initCheckoutTracking();
 
+    // Session-persistent limited-time offer countdown
+    const initOfferCountdown = () => {
+        const countdown = document.getElementById('offer-countdown');
+        if (!countdown) return;
+
+        const storageKey = 'deepstudy_offer_countdown_end';
+        const duration = 15 * 60 * 1000;
+        const storedEndTime = Number(sessionStorage.getItem(storageKey));
+        const endTime = Number.isFinite(storedEndTime) && storedEndTime > 0
+            ? storedEndTime
+            : Date.now() + duration;
+
+        if (!storedEndTime) {
+            sessionStorage.setItem(storageKey, String(endTime));
+        }
+
+        const updateCountdown = () => {
+            const remaining = Math.max(0, endTime - Date.now());
+            const totalSeconds = Math.ceil(remaining / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            countdown.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            if (remaining <= 0) {
+                window.clearInterval(intervalId);
+            }
+        };
+
+        const intervalId = window.setInterval(updateCountdown, 1000);
+        updateCountdown();
+    };
+    initOfferCountdown();
+
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
