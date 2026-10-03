@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/transpetro/:match*",
-      "destination": "https://vercel.app/:match*"
+      "destination": "https://transpetro-deepstudy.vercel.app/:match*"
     }
   ]
 }
